@@ -265,6 +265,12 @@ a{color:inherit;text-decoration:none}
 .sticky .p b span{font-size:10px;font-family:var(--sans);margin-left:2px;font-weight:500}
 .sticky a{flex:1;background:linear-gradient(110deg,var(--navy-d),var(--navy-l));color:#fff;text-align:center;border-radius:6px;font-family:var(--serif);font-weight:600;font-size:16px;padding:13px 6px;box-shadow:0 2px 0 #0e1a3d}
 .sticky a::after{content:"›";margin-left:10px;font-family:var(--sans)}
+
+/* 光が流れるボタン（冒頭・追尾） */
+.shine{position:relative;overflow:hidden}
+.shine::before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.55) 50%,rgba(255,255,255,0) 100%);transform:skewX(-20deg);animation:shine 3s ease-in-out infinite;pointer-events:none;z-index:2}
+@keyframes shine{0%{left:-60%}35%{left:130%}100%{left:130%}}
+@media (prefers-reduced-motion:reduce){.shine::before{animation:none;display:none}}
 </style>
 </head>
 <body>
@@ -301,7 +307,7 @@ a{color:inherit;text-decoration:none}
     <span class="seal">安心</span>
     <span><b>全額返金保証つき</b><small>仕上がりにご満足いただけなければ、施術後7日以内のお申し出で全額返金</small></span>
   </div>
-  <a class="cta" href="https://beauty.hotpepper.jp/CSP/kr/reserve/?storeId=H000825141&couponId=CP00000013255394&add=0&rootCd=10" data-cta="fv">
+  <a class="cta shine" href="https://beauty.hotpepper.jp/CSP/kr/reserve/?storeId=H000825141&couponId=CP00000013255394&add=0&rootCd=10" data-cta="fv">
     <span class="in"><small>Hot Pepper Beautyで予約</small><strong>空き状況を見る</strong></span>
   </a>
   <div class="cta-notes">
@@ -539,7 +545,7 @@ a{color:inherit;text-decoration:none}
 <div class="sticky">
   <div class="wrap">
     <p class="p"><small>初回</small><b>¥3,500<span>税込</span></b></p>
-    <a href="https://beauty.hotpepper.jp/CSP/kr/reserve/?storeId=H000825141&couponId=CP00000013255394&add=0&rootCd=10" data-cta="sticky">空席確認・予約する</a>
+    <a class="shine" href="https://beauty.hotpepper.jp/CSP/kr/reserve/?storeId=H000825141&couponId=CP00000013255394&add=0&rootCd=10" data-cta="sticky">空席確認・予約する</a>
   </div>
 </div>
 
