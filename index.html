@@ -279,6 +279,16 @@ a{color:inherit;text-decoration:none}
 @media (prefers-reduced-motion:reduce){.shine::before{animation:none;display:none}}
 
 .rv::after{display:none}
+
+.notes{padding:14px 18px 10px;border-top:1px solid var(--line)}
+.notes .nt{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.1em}
+.notes ul{list-style:none;margin-top:6px}
+.notes li{font-size:10.5px;color:var(--muted);line-height:1.65;padding-left:2.4em;text-indent:-2.4em}
+.notes li::before{content:attr(data-n);display:inline-block;width:2.4em;text-indent:0}
+.notes li+li{margin-top:4px}
+.ref{font-size:9px;font-weight:400;vertical-align:super;line-height:0;margin-left:2px;letter-spacing:0;font-family:var(--sans)}
+.promise .ref{color:#c9d3e6}
+.stat .ref{color:var(--muted)}
 </style>
 </head>
 <body>
@@ -299,17 +309,17 @@ a{color:inherit;text-decoration:none}
   <p class="sub">眉を整えて、清潔感アップ。</p>
   <div class="ba">
     <figure><img src="img/fv_before.webp" alt="施術前" width="486" height="370"><figcaption>BEFORE</figcaption></figure>
-    <figure class="after"><img src="img/fv_after.webp" alt="施術後" width="486" height="370"><figcaption>AFTER</figcaption></figure>
+    <figure class="after"><img src="img/fv_after.webp" alt="施術後" width="486" height="370"><figcaption>AFTER<sup class="ref">※3</sup></figcaption></figure>
     <span class="arrow">›</span>
   </div>
-  <p class="note ba-note">実際の施術例。仕上がりには個人差があります。</p>
+  
   <p class="menu-name">美眉ワックス+毛量調整(カット+間引き込)</p>
   <p class="was">通常価格<s>¥4,500</s></p>
   <p class="price"><span class="yen">¥</span><span class="num">3,500</span><span class="tax">税込</span></p>
   <p class="tagline">OPEN記念・初回限定</p>
   <div class="facts">
     <p class="walk">原宿駅・表参道駅 <b>徒歩5分</b></p>
-    <p class="rate">口コミ評価 <b>4.9</b><i>★</i><sup>※</sup></p>
+    <p class="rate">口コミ評価 <b>4.9</b><i>★</i><sup class="ref">※2</sup></p>
   </div>
   <div class="guarantee">
     <span class="seal">安心</span>
@@ -318,10 +328,6 @@ a{color:inherit;text-decoration:none}
   <a class="cta shine" href="https://beauty.hotpepper.jp/CSP/kr/reserve/?storeId=H000825141&couponId=CP00000013255394&add=0&rootCd=10" data-cta="fv">
     <span class="in"><small>Hot Pepper Beautyで予約</small><strong>空き状況を見る</strong></span>
   </a>
-  <div class="cta-notes">
-    <p class="note">※予約枠の空き状況によりご案内できない場合があります。</p>
-    <p class="note" style="margin-top:8px">※口コミ4.9はグループの公式掲載値（2026年7月15日時点）。</p>
-  </div>
 </section>
 
 <!-- 2. お悩み -->
@@ -353,7 +359,7 @@ a{color:inherit;text-decoration:none}
     <div class="ph"><img src="img/reason01.webp" alt="眉のデザインを測る様子" loading="lazy" width="548" height="365"><span class="no">01</span></div>
     <div class="bd"><span class="k">フルオーダー黄金比デザイン</span>
       <h3>眉だけではなく、<span>「顔」をカッコよくする。</span></h3>
-      <p>あなたの骨格・パーツ配置から黄金比を割り出し、顔全体の印象が引き締まる眉を設計します。</p></div>
+      <p>骨格やパーツの配置から黄金比を割り出し、お顔の印象が最も引き立つ眉をデザインします。</p></div>
   </article>
   <article class="reason">
     <div class="ph"><img src="img/reason02.webp" alt="専用の糸でマッピングする様子" loading="lazy" width="800" height="533"><span class="no">02</span></div>
@@ -372,12 +378,11 @@ a{color:inherit;text-decoration:none}
 <!-- 4. 実績・お約束 -->
 <section class="promise">
   <p class="label">OUR PROMISE</p>
-  <p class="lead1">年間<em>10</em>万人以上が選ぶ</p>
+  <p class="lead1">年間<em>10</em>万人以上が選ぶ<sup class="ref">※1</sup></p>
   <p class="lead2">メンズ眉毛専門サロン</p>
-  <div class="stat"><div class="in"><p class="k">全国の店舗数</p><p class="v">23<small>店舗</small></p></div></div>
-  <div class="stat"><div class="in"><p class="k">グループ口コミ平均評価</p><p class="v"><i>★</i>4.9<small>/ 5</small></p></div></div>
-  <div class="stat"><div class="in"><p class="k">メンズ眉毛サロン<br>口コミ件数 全国No.1</p><p class="v">20,043<small>件</small></p></div></div>
-  <p class="note">口コミ数・評価は公式サイト掲載値。2026年7月15日時点、Hot Pepper Beauty・Googleの集計（自社調べ）。原宿／表参道店単店の数値ではありません。</p>
+  <div class="stat"><div class="in"><p class="k">全国の店舗数<sup class="ref">※2</sup></p><p class="v">23<small>店舗</small></p></div></div>
+  <div class="stat"><div class="in"><p class="k">グループ口コミ平均評価<sup class="ref">※2</sup></p><p class="v"><i>★</i>4.9<small>/ 5</small></p></div></div>
+  <div class="stat"><div class="in"><p class="k">メンズ眉毛サロン<br>口コミ件数 全国No.1<sup class="ref">※2</sup></p><p class="v">20,043<small>件</small></p></div></div>
   <div class="promise-card"><div class="in">
     <p class="k">安心のお約束</p>
     <p class="v">全額返金保証</p>
@@ -388,7 +393,7 @@ a{color:inherit;text-decoration:none}
 <!-- 5. ビフォーアフター -->
 <section class="sec">
   <p class="label">BEFORE &amp; AFTER</p>
-  <h2 class="h2">男性の第一印象を、<br>眉から変える</h2>
+  <h2 class="h2">男性の第一印象を、<br>眉から変える<sup class="ref">※3</sup></h2>
   <div class="case">
     <p class="no">CASE <b>01</b></p>
     <h3>毛流れを整えて、すっきりと。</h3>
@@ -418,7 +423,6 @@ a{color:inherit;text-decoration:none}
       <span class="go">→</span>
     </div>
   </div>
-  <p class="note" style="margin-top:22px">実際の施術例です。写真の色・眉・顔は加工していません。撮影角度や照明条件は異なります。効果・仕上がりには個人差があります。</p>
 </section>
 
 <!-- 6. クーポン -->
@@ -433,8 +437,7 @@ a{color:inherit;text-decoration:none}
       <p class="was2">通常<s>¥4,500</s></p>
       <p class="down">↓</p>
       <p class="price"><span class="yen">¥</span><span class="num" style="font-size:72px">3,500</span><span class="tax">税込</span></p>
-          <div class="chips"><span>追加料金なし</span><span>所要時間 約45分</span></div>
-      <p class="note" style="margin-top:10px;text-align:left">※所要時間は目安です。予約時のクーポン条件・施術時間をご確認ください。</p>
+          <div class="chips"><span>追加料金なし</span><span>所要時間 約45分<sup class="ref">※4</sup></span></div>
       <p class="check">ご希望の日時をチェック</p>
       <a class="cta shine" href="https://beauty.hotpepper.jp/CSP/kr/reserve/?storeId=H000825141&couponId=CP00000013255394&add=0&rootCd=10" data-cta="coupon"><span class="in"><strong>このクーポンで予約する</strong></span></a>
     </div>
@@ -474,13 +477,12 @@ a{color:inherit;text-decoration:none}
 <!-- 9. お客様の声 -->
 <section class="sec tint">
   <p class="label">CUSTOMER VOICE</p>
-  <h2 class="h2">ご来店いただいた<br>お客様の声。</h2>
+  <h2 class="h2">ご来店いただいた<br>お客様の声。<sup class="ref">※5</sup></h2>
   <p class="lead">原宿／表参道店の実際の口コミより</p>
   <p class="vh">ホットペッパー / Google の口コミ</p>
   <div class="rv"><p class="rk">REVIEW 01</p><img src="img/rev_hpb1.webp" alt="Hot Pepper Beautyの口コミ1" loading="lazy" width="1196" height="278"></div>
   <div class="rv"><p class="rk">REVIEW 02</p><img src="img/rev_hpb2.webp" alt="Hot Pepper Beautyの口コミ2" loading="lazy" width="1196" height="316"></div>
   <div class="rv"><p class="rk">REVIEW 03</p><img src="img/rev_g1.webp" alt="Googleの口コミ1" loading="lazy" width="1171" height="261"></div>
-  <p class="note src">出典：Hot Pepper Beauty 原宿／表参道店、Googleの口コミ（いずれも2026年10月6日提供の掲載画面）。投稿時期は撮影時点の表示です。<br>※個人の感想です。感じ方や仕上がりには個人差があります。</p>
 </section>
 
 <!-- 10. よくある質問 -->
@@ -541,6 +543,18 @@ a{color:inherit;text-decoration:none}
   <p class="cp">© MAYU CLEAR</p>
   <a class="pp" href="privacy.html">プライバシーポリシー</a>
 </footer>
+
+<section class="notes">
+  <p class="nt">注記</p>
+  <ul>
+    <li data-n="※1">全店の年間来店数（自社調べ）</li>
+    <li data-n="※2">マユクリア全店の値（2026年7月15日時点・自社調べ）</li>
+    <li data-n="※3">実際の施術例（無加工）。効果には個人差があります。</li>
+    <li data-n="※4">目安の時間です。</li>
+    <li data-n="※5">Hot Pepper Beauty・Googleの口コミより。個人の感想です。</li>
+    <li data-n="※">予約枠の空き状況によりご案内できない場合があります。</li>
+  </ul>
+</section>
 
 <div class="sticky">
   <div class="wrap">
