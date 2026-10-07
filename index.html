@@ -337,45 +337,76 @@ a{color:inherit;text-decoration:none}
 #mayuclear-concerns{max-width:none}
 .solve-sec{padding-top:30px}
 .solve-sec .solve{border-top:0;margin-top:0;padding-top:0}
+
+/* ヘッダー（細い1行・2026/10/7） */
+.hd2{padding:8px 16px;justify-content:center}
+.hd2 .brand{gap:8px;align-items:center}
+.hd2 .brand img{width:24px}
+.hd2 .brand b{font-size:16px;display:inline}
+.hd2 .brand small{font-size:10px;color:var(--gray);border-left:1px solid var(--line);padding-left:8px}
+/* ファーストビュー改善（2026/10/7） */
+.fv2{padding:14px 16px 14px}
+.fv2 .chips{display:flex;justify-content:center;gap:6px;flex-wrap:wrap}
+.fv2 .chips span{font-size:11.5px;font-weight:700;color:var(--ink);background:#fff;border:1px solid var(--line);padding:4px 9px;border-radius:2px;line-height:1.4}
+.fv2 .chips .c-gold{background:var(--navy);border-color:var(--navy);color:#fff}
+.fv2 .chips b{font-family:var(--serif);color:var(--navy);font-size:13px}
+.fv2 .chips i{color:var(--gold);font-style:normal}
+.fv2 h1{font-size:30px;line-height:1.35;margin-top:10px;letter-spacing:.02em;white-space:nowrap}
+.fv2 h1 span{font-size:26px;color:var(--ink)}
+@media(max-width:375px){.fv2 h1{font-size:28px}.fv2 h1 span{font-size:24px}}
+.fv2 .ba{margin-top:10px}
+.fv2 .ba figcaption{padding:3px 0 1px;font-size:11px}
+.fv2 .offer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;background:#fff;border:1px solid var(--gold-l);border-top:3px solid var(--gold);padding:9px 12px;text-align:left}
+.fv2 .o-l{display:flex;flex-direction:column;gap:3px;min-width:0}
+.fv2 .o-tag{align-self:flex-start;font-size:10.5px;font-weight:700;color:#71501e;background:#f4ead6;border:1px solid #b49a66;padding:1px 7px;letter-spacing:.06em}
+.fv2 .o-menu{font-family:var(--serif);font-weight:600;color:var(--navy);font-size:13.5px;line-height:1.35}
+.fv2 .o-menu small{display:block;font-size:10.5px;color:var(--gray);font-family:var(--sans);font-weight:500}
+.fv2 .o-r{text-align:right;line-height:1;white-space:nowrap}
+.fv2 .o-r s{display:block;font-size:12px;color:#8792a6;text-decoration-color:var(--gold);margin-bottom:2px}
+.fv2 .o-r b{font-family:var(--serif);font-weight:600;color:var(--navy);font-size:38px;letter-spacing:-.01em}
+.fv2 .o-r b i{font-style:normal;font-size:.55em;margin-right:1px}
+.fv2 .o-r small{font-size:10px;color:var(--gray);margin-left:2px}
+.fv2 .g2{display:flex;align-items:center;gap:9px;margin-top:7px;text-align:left}
+.fv2 .g2 .seal{flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);font-family:var(--serif);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fv2 .g2 b{font-size:13px;color:var(--navy)}
+.fv2 .g2 small{display:block;font-size:9.5px;color:var(--muted);line-height:1.45}
+.fv2 .cta{margin-top:10px}
+.fv2 .cta .in{padding:7px 12px 9px}
+.fv2 .cta strong{font-size:22px}
+.fv2 .more{display:flex;flex-direction:column;align-items:center;margin-top:8px;font-size:12px;color:var(--gray);letter-spacing:.08em}
+.fv2 .more span{font-size:20px;line-height:.8;color:var(--gold);animation:more-bob 1.6s ease-in-out infinite}
+@keyframes more-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+@media(prefers-reduced-motion:reduce){.fv2 .more span{animation:none}}
+/* 追尾ボタン：ファーストビューの予約ボタンが見えている間は隠す */
+.sticky{transition:transform .3s ease}
+.sticky.is-hidden{transform:translate(-50%,110%)}
+
+/* ファーストビューのビフォーアフター画像（2名） */
+.fv2 .ba-top{position:relative;margin-top:10px;border:1px solid #c9d3e3;background:#fff;padding:3px}
+.fv2 .ba-top sup{position:absolute;right:8px;bottom:6px;font-size:10px;color:#fff;text-shadow:0 0 3px rgba(0,0,0,.6)}
 </style>
 </head>
 <body>
 <div class="page">
 
-<header class="hd">
-  <a class="brand" href="#top" aria-label="MAYU CLEAR">
-    <img src="img/logo_mark.png" alt="" width="34" height="30">
-    <span><b>MAYU CLEAR</b><small>メンズ専門眉毛サロン</small></span>
-  </a>
-  <span class="store-pill">原宿 / 表参道店</span>
+<header class="hd hd2">
+  <div class="brand"><img src="img/logo_mark.png" alt="" width="34" height="30"><b>MAYU CLEAR</b><small>メンズ専門眉毛サロン</small></div>
 </header>
 
 <!-- 1. ファーストビュー -->
-<section class="fv" id="top">
-  <span class="fv-tag">メンズ専門眉毛サロン｜原宿／表参道店</span>
-  <h1>本日空き◎</h1>
-  <p class="sub">眉を整えて、清潔感アップ。</p>
-  <div class="ba">
-    <figure><img src="img/fv_before.webp" alt="施術前" width="486" height="370"><figcaption>BEFORE</figcaption></figure>
-    <figure class="after"><img src="img/fv_after.webp" alt="施術後" width="486" height="370"><figcaption>AFTER<sup class="ref">※3</sup></figcaption></figure>
-    <span class="arrow">›</span>
+<section class="fv fv2" id="top">
+  <div class="chips"><span class="c-gold">本日空き◎</span><span>原宿・表参道 徒歩5分</span><span>口コミ <b>4.9</b><i>★</i><sup class="ref">※2</sup></span></div>
+  <h1>本気でモテたい男性へ。<br><span>まずは、眉から。</span></h1>
+  <div class="ba-top"><img src="img/fv_ba_top2.webp" alt="施術前と施術後（2名）" width="720" height="448"><sup class="ref">※3</sup></div>
+  <div class="offer">
+    <div class="o-l"><span class="o-tag">OPEN記念・初回限定</span><span class="o-menu">美眉ワックス＋毛量調整<small>（カット＋間引き込）</small></span></div>
+    <div class="o-r"><s>¥4,500</s><b><i>¥</i>3,500</b><small>税込</small></div>
   </div>
-  
-  <p class="menu-name">美眉ワックス+毛量調整(カット+間引き込)</p>
-  <p class="was">通常価格<s>¥4,500</s></p>
-  <p class="price"><span class="yen">¥</span><span class="num">3,500</span><span class="tax">税込</span></p>
-  <p class="tagline">OPEN記念・初回限定</p>
-  <div class="facts">
-    <p class="walk">原宿駅・表参道駅 <b>徒歩5分</b></p>
-    <p class="rate">口コミ評価 <b>4.9</b><i>★</i><sup class="ref">※2</sup></p>
-  </div>
-  <div class="guarantee">
-    <span class="seal">安心</span>
-    <span><b>全額返金保証つき</b><small>仕上がりにご満足いただけなければ、施術後7日以内のお申し出で全額返金</small></span>
-  </div>
+  <p class="g2"><span class="seal">安心</span><span><b>全額返金保証つき</b><small>仕上がりにご満足いただけなければ、施術後7日以内のお申し出で全額返金</small></span></p>
   <a class="cta shine" href="https://beauty.hotpepper.jp/CSP/kr/reserve/?storeId=H000825141&couponId=CP00000013255394&add=0&rootCd=10" data-cta="fv">
     <span class="in"><small>Hot Pepper Beautyで予約</small><strong>空き状況を見る</strong></span>
   </a>
+  <a class="more" href="#mayuclear-concerns">続きを見る<span>⌄</span></a>
 </section>
 
 <!-- 2. お悩み（鵜沼さん作のHTML 2026/10/7） -->
@@ -614,6 +645,10 @@ document.querySelectorAll('a[data-cta]').forEach(function(a){
     setTimeout(go,300);
   });
 });
+</script>
+<script>
+(function(){var s=document.querySelector('.sticky'),c=document.querySelector('.fv .cta');if(!s||!c||!('IntersectionObserver' in window))return;
+new IntersectionObserver(function(e){s.classList.toggle('is-hidden',e[0].isIntersecting)}).observe(c);})();
 </script>
 </body>
 </html>
