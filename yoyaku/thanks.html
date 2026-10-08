@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ご予約ありがとうございます｜マユクリア 表参道/原宿店</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
+<!-- Meta Pixel：予約完了（お客様の個人情報は送らない。同じ予約で2回送らない） -->
+<script>window.MC_PREVIEW=/^(localhost|127\.0\.0\.1|192\.168\.[0-9.]+|10\.[0-9.]+)$/.test(location.hostname);if(window.MC_PREVIEW)window.fbq=function(){};/* 手元の確認用表示では計測しない */</script>
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','270599298766085');
+fbq('track','PageView');
+(function () {
+  var id = decodeURIComponent(location.hash.slice(1));
+  if (!/^H\d{4}-\d{4}$/.test(id)) return;
+  var key = 'mc_px_' + id, sent = false;
+  try { sent = !!localStorage.getItem(key); } catch (e) {}
+  if (sent) return;
+  var r = {};
+  try { r = JSON.parse(sessionStorage.getItem('mc_rsv') || '{}'); } catch (e) {}
+  var value = r.id === id && r.price ? Number(r.price) : 0;
+  fbq('track', 'Schedule', { value: value, currency: 'JPY' }, { eventID: id });
+  try { localStorage.setItem(key, '1'); } catch (e) {}
+})();
+</script>
+<script>
+if(!window.MC_PREVIEW)(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","ythaitcxvo");
+</script>
+<style>
+:root{
+  --navy:#1b2f6e; --navy-l:#2b4a8c; --ink:#2b3346; --gray:#5d677a; --muted:#8a93a5;
+  --gold:#a8894f; --gold-l:#d9c7a1; --gold-bg:#f6efe2; --bg:#f3f6fb; --line:#dbe2ee;
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);color:var(--ink);background:#e9eef6;line-height:1.75;-webkit-font-smoothing:antialiased}
+.page{max-width:480px;margin:0 auto;background:#fff;min-height:100vh;padding-bottom:40px}
+.hd{display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 16px;border-bottom:1px solid #eef1f6}
+.hd img{width:24px}
+.hd b{font-family:var(--serif);font-weight:500;color:var(--navy);font-size:16px;letter-spacing:.06em}
+.hd small{font-size:10px;color:var(--gray);border-left:1px solid var(--line);padding-left:8px}
+.sec{padding:28px 18px 8px}
+.ok{width:56px;height:56px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto}
+.ttl{font-family:var(--serif);font-weight:600;font-size:22px;text-align:center;margin-top:14px;line-height:1.5}
+.lead{text-align:center;font-size:13.5px;color:var(--gray);margin-top:10px}
+.sum{background:var(--bg);border-radius:8px;padding:14px;margin-top:20px;font-size:13.5px}
+.sum .row{display:flex;gap:10px;padding:3px 0}
+.sum .row span:first-child{color:var(--gray);width:72px;flex:none}
+.callnote{margin-top:16px;background:var(--gold-bg);border-left:3px solid var(--gold);padding:12px 14px;font-size:13px;color:var(--ink);line-height:1.75}
+.callnote .tel{margin-top:10px;background:#fff}
+.callnote .tel svg{width:16px;height:16px}
+.sum h3{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:.08em;margin:2px 0 4px}
+.sum h3:not(:first-child){margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.box{border:1px solid var(--line);border-radius:8px;padding:14px;margin-top:14px;font-size:13px}
+.box h2{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.box p{color:var(--gray)}
+.tel{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;border:1px solid var(--navy);color:var(--navy);border-radius:999px;padding:11px;font-weight:700;text-decoration:none;font-size:15px}
+.note{font-size:11.5px;color:var(--muted);margin-top:8px}
+/* お店の場所（コンパクト）：見出し・住所 → 地図 → ボタン */
+.acc{margin-top:16px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
+.acc .body{padding:12px 14px 10px}
+.acc h2{font-size:13px;font-weight:700;color:var(--navy)}
+.acc p{font-size:12.5px;color:var(--gray);line-height:1.65;margin-top:3px}
+.acc .mapbox{position:relative;width:100%;height:180px;background:#eef1f6;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.acc .mapbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.acc .go{display:flex;align-items:center;justify-content:center;gap:6px;margin:10px 14px 12px;border:1px solid var(--navy);border-radius:999px;padding:9px;font-size:13px;font-weight:700;color:var(--navy);text-decoration:none}
+.acc .go svg{width:15px;height:15px}
+.foot{font-size:11px;color:var(--muted);text-align:center;margin-top:28px;line-height:1.8}
+.foot a{color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="hd"><img src="../img/logo_mark.png" alt="" width="24" height="21"><b>MAYU CLEAR</b><small>表参道/原宿店</small></header>
+  <div class="sec">
+    <div class="ok" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h1 class="ttl">ご予約を承りました</h1>
+    <p class="lead">ご入力いただいたメールアドレスに<br>確認メールをお送りしました。</p>
+    <div class="callnote">
+      <p>ご都合が悪くなったときや、お急ぎのときは、<br>お手数ですがお店までお電話ください。</p>
+      <a class="tel" href="tel:0368227689"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>原宿店 TEL 03-6822-7689</a>
+    </div>
+
+    <div class="sum" id="sum" hidden data-clarity-mask="true"></div>
+
+    <div class="box">
+      <h2>確認メールが届かないとき</h2>
+      <p>迷惑メールフォルダに入っていないかご確認ください。<br>送信元：automation@deedcore.net</p>
+      <p class="note">見つからない場合も、ご予約は完了しています。ご心配な場合はお電話でお問い合わせください。</p>
+    </div>
+
+
+    <div class="acc">
+      <div class="body">
+        <h2>お店の場所</h2>
+        <p>東京都渋谷区神宮前４丁目２６－３２<br>原宿吉田ビル３０２<br>JR原宿駅（竹下口）・表参道駅 各徒歩5分</p>
+      </div>
+      <div class="mapbox"><iframe src="https://maps.google.com/maps?q=%E3%83%9E%E3%83%A6%E3%82%AF%E3%83%AA%E3%82%A2%20%E8%A1%A8%E5%8F%82%E9%81%93%2F%E5%8E%9F%E5%AE%BF%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%8B%E8%B0%B7%E5%8C%BA%E7%A5%9E%E5%AE%AE%E5%89%8D4%E4%B8%81%E7%9B%AE26-32%20%E5%8E%9F%E5%AE%BF%E5%90%89%E7%94%B0%E3%83%93%E3%83%AB302&amp;z=15&amp;hl=ja&amp;output=embed" title="マユクリア 表参道/原宿店の地図" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      <a class="go" href="https://maps.google.com/?cid=17303523906878702756" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>地図アプリで開く（道順を見る）</a>
+    </div>
+  </div>
+  <p class="foot">マユクリア 表参道/原宿店　／　<a href="../privacy.html">プライバシーポリシー</a></p>
+</div>
+<script>
+(function () {
+  var id = decodeURIComponent(location.hash.slice(1));
+  var r = {};
+  try { r = JSON.parse(sessionStorage.getItem('mc_rsv') || '{}'); } catch (e) {}
+  if (!r.id || r.id !== id) return;
+  var WD = '日月火水木金土', d = r.date, x = new Date(+d.slice(0, 4), +d.slice(4, 6) - 1, +d.slice(6));
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var rows = [
+    ['日時', '<b>' + (x.getMonth() + 1) + '月' + x.getDate() + '日（' + WD[x.getDay()] + '） ' + Number(r.time.slice(0, 2)) + ':' + r.time.slice(2) + '〜</b>'],
+    ['メニュー', esc(r.coupon)],
+    ['料金', r.price > 0 ? '¥' + Number(r.price).toLocaleString() + '（税込）' : '来店時にご相談'],
+    ['受付番号', esc(r.id)]
+  ];
+  var f = r.f || {};
+  var rows2 = [];
+  if (f.sei) rows2.push(['お名前', esc(f.sei + ' ' + f.mei) + ' 様']);
+  if (f.seiKana) rows2.push(['フリガナ', esc(f.seiKana + ' ' + f.meiKana)]);
+  if (f.tel) rows2.push(['電話番号', esc(f.tel)]);
+  if (f.email) rows2.push(['メール', esc(f.email)]);
+  if (f.note) rows2.push(['ご要望', esc(f.note)]);
+  var tr = function (q) { return '<div class="row"><span>' + q[0] + '</span><span>' + q[1] + '</span></div>'; };
+  var el = document.getElementById('sum');
+  el.innerHTML = '<h3>ご予約内容</h3>' + rows.map(tr).join('') + (rows2.length ? '<h3>お客様情報</h3>' + rows2.map(tr).join('') : '');
+  el.hidden = false;
+})();
+</script>
+</body>
+</html>

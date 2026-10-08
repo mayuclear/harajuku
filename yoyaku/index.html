@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ご予約｜マユクリア 表参道/原宿店</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://harajuku-yoyaku.mayuclear.workers.dev">
+<!-- Meta Pixel（お客様の個人情報は送らない） -->
+<script>window.MC_PREVIEW=/^(localhost|127\.0\.0\.1|192\.168\.[0-9.]+|10\.[0-9.]+)$/.test(location.hostname)||/[?&]staff=1/.test(location.search);if(window.MC_PREVIEW)window.fbq=function(){};/* 手元の確認用表示では計測しない */</script>
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','270599298766085');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=270599298766085&ev=PageView&noscript=1"></noscript>
+<!-- Microsoft Clarity（入力欄は記録しない設定） -->
+<script>
+if(!window.MC_PREVIEW)(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","ythaitcxvo");
+</script>
+<style>
+:root{
+  --navy:#1b2f6e; --navy-d:#14234f; --navy-l:#2b4a8c;
+  --ink:#2b3346; --gray:#5d677a; --muted:#8a93a5;
+  --gold:#a8894f; --gold-l:#d9c7a1; --gold-bg:#f6efe2;
+  --bg:#f3f6fb; --line:#dbe2ee; --white:#fff;
+  --red:#c0392b; --sat:#2b5fb4; --sun:#c0392b;
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--ink);background:#e9eef6;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.page{max-width:480px;margin:0 auto;background:var(--white);min-height:100vh;padding-bottom:40px}
+
+/* header */
+.hd{display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 16px;border-bottom:1px solid #eef1f6;background:#fff;position:sticky;top:0;z-index:20}
+.hd img{width:24px}
+.hd b{font-family:var(--serif);font-weight:500;color:var(--navy);font-size:16px;letter-spacing:.06em}
+.hd small{font-size:10px;color:var(--gray);border-left:1px solid var(--line);padding-left:8px}
+
+/* steps */
+.steps{display:flex;padding:14px 16px 0;gap:4px}
+.steps li{list-style:none;flex:1;text-align:center;font-size:10px;color:var(--muted);padding-top:8px;border-top:3px solid var(--line)}
+.steps li.on{color:var(--navy);border-color:var(--navy);font-weight:700}
+.steps li.done{color:var(--navy-l);border-color:var(--navy-l)}
+
+.sec{padding:18px 16px}
+.ttl{font-family:var(--serif);font-weight:600;font-size:20px;color:var(--ink);line-height:1.5}
+.sub{font-size:12px;color:var(--gray);margin-top:4px}
+.back{font-size:12px;color:var(--navy-l);text-decoration:underline;margin:12px 16px 0;display:inline-block}
+
+/* tabs */
+.tabs{display:flex;margin-top:14px;border:1px solid var(--navy);border-radius:6px;overflow:hidden}
+.tabs button{flex:1;padding:10px 4px;font-size:13px;font-weight:700;color:var(--navy);background:#fff}
+.tabs button.on{background:var(--navy);color:#fff}
+
+/* coupon card */
+.cards{margin-top:14px;display:flex;flex-direction:column;gap:12px}
+.card{border:1px solid var(--line);border-radius:8px;padding:14px;background:#fff}
+.card.pick{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-bg)}
+.chips{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.chip{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:3px;background:#edf2fa;color:var(--navy)}
+.chip.new{background:var(--navy);color:#fff}
+.chip.rep{background:#3f7a52;color:#fff}
+.chip.gold{background:var(--gold);color:#fff}
+.chip.time{background:none;color:var(--gray);font-weight:500;padding-left:0}
+.cname{font-weight:700;font-size:14.5px;line-height:1.55;margin-top:8px}
+.cdesc{font-size:12px;color:var(--gray);margin-top:6px;line-height:1.65}
+.cfoot{display:flex;align-items:center;justify-content:space-between;margin-top:12px;gap:10px}
+.price{font-family:var(--serif);font-weight:700;font-size:22px;color:var(--navy)}
+.price small{font-size:11px;font-family:var(--sans);font-weight:500;color:var(--gray);margin-left:2px}
+.price.ask{font-size:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:var(--navy);color:#fff;font-weight:700;font-size:14px;border-radius:999px;padding:11px 18px;text-decoration:none;white-space:nowrap}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.wide{display:flex;width:100%;padding:15px;font-size:16px}
+.btn.gold{background:linear-gradient(180deg,#b7975a,#9a7b42)}
+.btn.line{background:#fff;color:var(--navy);border:1px solid var(--navy)}
+
+/* summary box */
+.sum{background:var(--bg);border-radius:8px;padding:12px 14px;margin-top:12px;font-size:13px}
+.sum b{font-weight:700}
+.sum .row{display:flex;gap:10px;padding:3px 0}
+.sum .row span:first-child{color:var(--gray);width:64px;flex:none}
+
+/* 日時の表（HPB型：横に日付・縦に時間。1週間ずつ） */
+.wk{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:14px}
+.wk button{font-size:12px;font-weight:700;color:var(--navy);border:1px solid var(--navy);border-radius:999px;padding:6px 10px;background:#fff;white-space:nowrap}
+.wk button:disabled{opacity:.3}
+.wk span{font-size:13px;font-weight:700;text-align:center}
+.legend{display:flex;gap:12px;justify-content:center;font-size:11px;color:var(--gray);margin-top:8px}
+.legend b{color:var(--navy)}
+.grid{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:8px;font-size:12px}
+.grid th,.grid td{border:1px solid var(--line);text-align:center;padding:0}
+.grid thead th{position:sticky;top:39px;z-index:2;background:#f7f9fc;font-weight:700;padding:4px 0;line-height:1.25}
+.grid thead th .d{display:block;font-size:14px}
+.grid thead th .w{display:block;font-size:10px}
+.grid thead th.sat{background:#e9eff9;color:var(--sat)}
+.grid thead th.sun{background:#fbecec;color:var(--sun)}
+.grid thead th.corner{width:46px;background:#f7f9fc}
+.grid tbody th{font-weight:500;font-size:11.5px;color:var(--gray);background:#fafbfd;height:36px}
+.grid tbody th.hr{font-weight:700;color:var(--ink);font-size:12.5px}
+.grid tbody tr.hr td,.grid tbody tr.hr th{border-top:2px solid #c9d2e1}
+.grid td.x{color:var(--muted);background:#f5f6f8}
+.grid td.n{color:#c3c8d2;background:#eef0f3}
+.grid td.o{padding:0}
+.grid td.o button{width:100%;height:36px;font-size:17px;color:var(--navy);font-weight:700;background:#fff}
+.grid td.o button:active,.grid td.o button.on{background:var(--navy);color:#fff}
+.empty{font-size:13px;color:var(--gray);background:var(--bg);border-radius:8px;padding:14px;margin-top:10px}
+.loading{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray);padding:22px 4px}
+.spin{width:18px;height:18px;border:2px solid var(--line);border-top-color:var(--navy);border-radius:50%;animation:sp 1s linear infinite;flex:none}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* form */
+.f{margin-top:16px}
+.f label.l{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+.f label.l em{font-style:normal;font-size:10px;color:#fff;background:var(--red);padding:1px 5px;border-radius:3px;margin-left:6px;vertical-align:1px}
+.f label.l i{font-style:normal;font-size:10px;color:var(--gray);background:#eef1f6;padding:1px 5px;border-radius:3px;margin-left:6px;vertical-align:1px}
+.f label.l .ok{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.f input[type=text],.f input[type=tel],.f input[type=email],.f textarea{width:100%;border:1px solid #c9d2e1;border-radius:6px;padding:11px 12px;font-size:16px;font-family:inherit;background:#fff;color:var(--ink)}
+.f textarea{min-height:72px;resize:vertical}
+.f input:focus,.f textarea:focus{outline:2px solid var(--navy-l);outline-offset:0;border-color:transparent}
+.f .hint{font-size:11px;color:var(--muted);margin-top:4px}
+.f .err{font-size:12px;color:var(--red);margin-top:4px;display:none}
+.f.bad input{border-color:var(--red);background:#fffafa}
+.f.bad .err{display:block}
+.agree{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:18px}
+.agree input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--navy)}
+.agree a{color:var(--navy-l)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+.notice{font-size:12px;color:var(--gray);background:var(--gold-bg);border-left:3px solid var(--gold);padding:10px 12px;margin-top:14px;line-height:1.7}
+.alert{font-size:13px;color:var(--red);background:#fdf0ee;border-radius:6px;padding:10px 12px;margin-top:12px;display:none}
+.alert.show{display:block}
+.fallback{margin-top:14px;padding:14px;border:1px dashed var(--gold);border-radius:8px;font-size:13px;color:var(--gray);display:none}
+.fallback.show{display:block}
+.fallback .btn{margin-top:10px}
+.foot{font-size:11px;color:var(--muted);text-align:center;margin-top:28px;line-height:1.8}
+.foot a{color:var(--muted)}
+.pop{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:.06em;margin:4px 0 -4px}
+.more{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:1px dashed var(--navy-l);border-radius:8px;padding:13px;font-size:14px;font-weight:700;color:var(--navy);background:#fff}
+.more span{font-size:18px;line-height:1}
+.repeat{font-size:12px;color:var(--gray);margin-top:10px;padding:9px 12px;background:var(--bg);border-radius:6px}
+.repeat a{color:var(--navy-l)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<script>if(window.MC_PREVIEW)document.write('<div style="position:sticky;top:0;z-index:99;background:#b3261e;color:#fff;font-size:12px;text-align:center;padding:6px 8px">確認用の表示です。最後の「予約を確定する」を押すと本当に予約が入ります</div>')</script>
+<div class="page">
+  <header class="hd"><img src="../img/logo_mark.png" alt="" width="24" height="21"><b>MAYU CLEAR</b><small>表参道/原宿店</small></header>
+
+  <ol class="steps" id="steps">
+    <li data-s="1">メニュー</li><li data-s="2">日時</li><li data-s="3">お客様情報</li><li data-s="4">確認</li>
+  </ol>
+
+  <!-- STEP1 クーポン -->
+  <section id="s1">
+    <div class="sec">
+      <h1 class="ttl">メニューを選ぶ</h1>
+      <p class="sub" id="sub1">はじめての方向けのメニューです。ご希望のクーポンの「空席を確認する」を押してください。</p>
+      <div class="notice" id="offline" hidden>ただいまこのページでのご予約を一時停止しています。お手数ですが、各メニューの「ホットペッパーで予約する」からご予約ください。</div>
+      <p class="repeat">2回目以降のお客様は、<a href="https://beauty.hotpepper.jp/kr/slnH000825141/coupon/" target="_blank" rel="noopener" data-hpb="repeat">ホットペッパービューティー</a>からご予約ください。</p>
+      <div class="cards" id="cards"></div>
+    </div>
+  </section>
+
+  <!-- STEP2 日時 -->
+  <section id="s2" hidden>
+    <a href="#" class="back" data-go="1">‹ メニューを選び直す</a>
+    <div class="sec">
+      <h1 class="ttl">日時を選ぶ</h1>
+      <div class="sum" id="sum2"></div>
+      <div class="alert" id="alert2"></div>
+      <div id="slotArea"></div>
+      <div class="fallback" id="fb2"></div>
+    </div>
+  </section>
+
+  <!-- STEP3 お客様情報 -->
+  <section id="s3" hidden>
+    <a href="#" class="back" data-go="2">‹ 日時を選び直す</a>
+    <div class="sec">
+      <h1 class="ttl">お客様情報</h1>
+      <div class="sum" id="sum3"></div>
+      <form id="form" novalidate data-clarity-mask="true">
+        <div class="f" data-k="name">
+          <label class="l">お名前<em>必須</em></label>
+          <div class="two"><input type="text" name="sei" placeholder="姓（例：山田）" autocomplete="family-name"><input type="text" name="mei" placeholder="名（例：太郎）" autocomplete="given-name"></div>
+          <p class="err">お名前を入力してください</p>
+        </div>
+        <div class="f" data-k="kana">
+          <label class="l">フリガナ<em>必須</em><span class="ok">ひらがなでもOK</span></label>
+          <div class="two"><input type="text" name="seiKana" placeholder="セイ（例：ヤマダ）"><input type="text" name="meiKana" placeholder="メイ（例：タロウ）"></div>
+          <p class="err">フリガナをカタカナかひらがなで入力してください</p>
+        </div>
+        <div class="f" data-k="tel">
+          <label class="l">電話番号<em>必須</em></label>
+          <input type="tel" name="tel" placeholder="例：09012345678" autocomplete="tel" inputmode="tel">
+          <p class="hint">当日のご連絡に使います</p>
+          <p class="err">電話番号を正しく入力してください</p>
+        </div>
+        <div class="f" data-k="email">
+          <label class="l">メールアドレス<em>必須</em></label>
+          <input type="email" name="email" placeholder="例：mayu@example.com" autocomplete="email" inputmode="email">
+          <p class="hint">ご予約確認のメールをお送りします</p>
+          <p class="err">メールアドレスを正しく入力してください</p>
+        </div>
+        <div class="f" data-k="note">
+          <label class="l">ご要望<i>任意</i></label>
+          <textarea name="note" maxlength="60" placeholder="例：眉の形の希望、気になっていること など（60文字まで）"></textarea>
+        </div>
+        <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <label class="agree"><input type="checkbox" name="agree"><span><a href="../privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意する</span></label>
+        <div class="alert" id="alert3"></div>
+        <div style="margin-top:18px"><button type="submit" class="btn wide">確認画面へ進む</button></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- STEP4 確認 -->
+  <section id="s4" hidden>
+    <a href="#" class="back" data-go="3">‹ 入力内容を直す</a>
+    <div class="sec">
+      <h1 class="ttl">ご予約内容の確認</h1>
+      <p class="sub">内容をご確認のうえ「予約を確定する」を押してください。</p>
+      <div class="sum" id="sum4" data-clarity-mask="true"></div>
+      <div class="notice">ご予約の変更・キャンセルは、お手数ですがお電話（<a href="tel:0368227689">03-6822-7689</a>）でご連絡ください。</div>
+      <div class="alert" id="alert4"></div>
+      <div class="fallback" id="fb4"></div>
+      <div style="margin-top:18px"><button type="button" class="btn wide gold" id="confirm">予約を確定する</button></div>
+
+    </div>
+  </section>
+
+  <p class="foot">マユクリア 表参道/原宿店<br>東京都渋谷区神宮前４丁目２６－３２原宿吉田ビル３０２<br>TEL <a href="tel:0368227689">03-6822-7689</a>　／　<a href="../privacy.html">プライバシーポリシー</a></p>
+</div>
+
+<script>
+(function () {
+  var API = 'https://harajuku-yoyaku.mayuclear.workers.dev';
+  var HPB_COUPON = function (id) { return 'https://beauty.hotpepper.jp/CSP/kr/reserve/?storeId=H000825141&couponId=' + id + '&add=0&rootCd=10'; };
+  var HPB_TOP = 'https://beauty.hotpepper.jp/kr/slnH000825141/coupon/';
+  var COUPONS = [{"id":"CP00000013255394","g":1,"l":"新規","n":"OPEN記念★特別価格¥4,500→¥3,500","d":"★口コミ投稿必須クーポン★ 《施術内容：カウンセリング/眉デザイン/眉WAX/眉カット/ツィーザー処理/クーリング/保湿》より垢抜けて清潔感のあるオシャレな印象に","m":45,"p":3500},{"id":"CP00000013166766","g":1,"l":"新規","n":"《全員/定番》美眉WAX+毛量調整(間引き/カット)￥5,500→￥4,500","d":"《施術内容：カウンセリング/眉デザイン/眉WAX/眉カット/ツィーザー処理/クーリング/保湿（眉毛メイクは希望制）》より垢抜けてオシャレな印象に","m":45,"p":4500},{"id":"CP00000013167060","g":1,"l":"全員","n":"＼眉毛サロンが初めての方／アナタにぴったりの眉毛クーポンをご提案♪","d":"初めてで不安な方も安心♪ご来店後にスタッフと相談して最適なクーポンをお選びいただけます！(※0円クーポンではありません。来店時にクーポン選択必須)","m":60,"p":0},{"id":"CP00000013166771","g":1,"l":"新規","n":"《新規/人気No.1》美眉WAX+毛量調整(間引き/カット)×眉毛パーマ♪","d":"髪の毛と同じく、眉毛にも\"生えグセ\"があります！眉毛の\"生えグセ\"を矯正し、綺麗な毛流れを形成する技術です◎濃さや太さのお悩みを幅広く改善可能♪","m":60,"p":8500},{"id":"CP00000013166776","g":1,"l":"新規","n":"《新規/人気No.2》美眉WAX+毛量調整(間引き/カット)×鼻毛WAX","d":"似合わせ眉毛スタイル診断・眉毛メイクも行います♪（眉毛メイクは希望の場合）突き抜ける爽快感！鼻毛出てるかも、、？呼吸もしやすくスッキリ爽快☆大人気のメニューとなっております！","m":60,"p":6000},{"id":"CP00000013166780","g":1,"l":"新規","n":"《新規/人気No.3》美眉WAX+毛量調整(間引き/カット)×選べるフェイスWAX","d":"\"おでこ/目の周り/小鼻/ほほ/もみあげ\"から1箇所好きなワックスを眉毛と一緒にお顔の産毛も除去できるお得クーポンです♪お顔が明るくなり清潔感のある印象へ◎","m":60,"p":6000},{"id":"CP00000013166786","g":1,"l":"新規","n":"《新規/イチオシ★》美眉WAX+毛量調整(間引き/カット)×部分パーマ◎","d":"髪の毛と同じく、眉毛にも\"生えグセ\"があります！眉毛の\"生えグセ\"を矯正し、綺麗な毛流れを形成する技術です◎(眉頭or中間or眉尻)濃さや太さのお悩みを幅広く改善できます♪","m":60,"p":7000},{"id":"CP00000013166791","g":1,"l":"全員","n":"《大事なイベント前に》眉毛Wax(間引き/カット込)+美眉パーマ+鼻毛Wax","d":"大切な前に！《眉毛Wax+毛量調整(間引き)+質感調整(カット)+眉毛パーマ+鼻毛Wax+メイク仕上げ(希望制)》の1日で清潔感とイケメン度が上がるお勧めプランです！このプランを選べば間違いなし！","m":60,"p":10500},{"id":"CP00000013229370","g":1,"l":"新規","n":"《新規/学割U24/定番》美眉WAX+毛量調整(間引き/カット)","d":"《施術内容：カウンセリング/眉デザイン/眉WAX/眉カット/ツィーザー処理/クーリング/保湿（眉毛メイクは希望制）》より垢抜けてオシャレな印象に","m":45,"p":4000},{"id":"CP00000013229371","g":1,"l":"新規","n":"《新規/学割U24/人気No1》美眉WAX+毛量調整(間引き/カット)×眉毛パーマ","d":"髪の毛と同じく、眉毛にも\"生えグセ\"があります！眉毛の\"生えグセ\"を矯正し、綺麗な毛流れを形成する技術です◎濃さや太さのお悩みを幅広く改善できます♪","m":60,"p":8000},{"id":"CP00000013229385","g":1,"l":"新規","n":"《新規/学割U24/人気No.2》美眉WAX+毛量調整(間引き/カット)×鼻毛WAX","d":"似合わせ眉毛スタイル診断・眉毛メイクも行います♪（メイクは希望の場合）24歳以下限定のお得なクーポン。眉毛と一緒に鼻毛も整えて一気に垢抜けへ","m":60,"p":5500},{"id":"CP00000013229398","g":1,"l":"新規","n":"《新規/学割U24/人気No3》美眉WAX+毛量調整(間引き/カット)×選択フェイスWAX","d":"\"おでこ/目の周り/小鼻/ほほ/もみあげ\"から好きなワックスを眉毛と一緒にお顔の産毛も除去できるお得クーポンです♪お顔が明るくなってより清潔感ある印象へ◎","m":60,"p":5500},{"id":"CP00000013229401","g":1,"l":"新規","n":"《新規/学割U24/イチオシ★》美眉WAX+毛量調整(間引き/カット)×部分パーマ◎","d":"髪の毛と同じく、眉毛にも\"生えグセ\"があります！眉毛の\"生えグセ\"を矯正し、綺麗な毛流れを形成する技術です◎(眉頭or中間or眉尻)濃さや太さなどのお悩みを幅広く改善できます♪","m":60,"p":6500}];
+  // 最初に見せる「おすすめメニュー」：実績上位の定番2つ＋比較用のパーマ（定番が手頃に見える並び・鵜沼さん案 2026/10/8）。残りは「ほかのメニューを見る」で開く
+  // 自社ページは新規集客用：再来クーポンは載せない（2026/10/8 鵜沼さん判断。2回目以降はHPBへ案内）
+  var FEATURED = { 1: ['CP00000013255394', 'CP00000013166766', 'CP00000013166771'] };
+
+  var st = { step: 1, g: 1, coupon: null, date: null, time: null, week: null, more: {}, offline: false, slots: null, slotsErr: false, form: null };
+  var $ = function (s) { return document.querySelector(s); };
+  var yen = function (n) { return '¥' + Number(n).toLocaleString(); };
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var hm = function (t) { return Number(t.slice(0, 2)) + ':' + t.slice(2); };
+  var WD = '日月火水木金土';
+  var dlabel = function (d) { var x = new Date(+d.slice(0, 4), +d.slice(4, 6) - 1, +d.slice(6)); return (x.getMonth() + 1) + '月' + x.getDate() + '日（' + WD[x.getDay()] + '）'; };
+  var ev = function (name, params) { try { fbq('trackCustom', name, params || {}); } catch (e) {} };
+
+  /* ── 空き状況：ページを開いた時点で読み始める ── */
+  var slotsPromise = null;
+  function loadSlots(force) {
+    if (slotsPromise && !force) return slotsPromise;
+    var ctl = new AbortController();
+    var timer = setTimeout(function () { ctl.abort(); }, 20000);
+    slotsPromise = fetch(API + '/slots', { signal: ctl.signal })
+      .then(function (r) { return r.json(); })
+      .then(function (d) { clearTimeout(timer); if (!d.ok) { if (d.reason === 'offline') setOffline(); throw new Error(d.error || 'ng'); } st.slots = d; st.slotsErr = false; return d; })
+      .catch(function (e) { clearTimeout(timer); st.slotsErr = true; slotsPromise = null; throw e; });
+    return slotsPromise;
+  }
+  loadSlots().catch(function () {});
+
+  /* ── 待機役（SBへの自動登録）が止まっているあいだは、自社ページで受けずにHPB予約へ案内する（二重予約を防ぐ） ── */
+  function setOffline() {
+    if (st.offline) return;
+    st.offline = true;
+    ev('HPBFallbackShown');
+    $('#offline').hidden = false;
+    $('#sub1').hidden = true;
+    if (st.step === 1) renderCards();
+    if (st.step === 2) renderSlots();
+  }
+
+  /* ── 画面切り替え ── */
+  function go(n) {
+    st.step = n;
+    [1, 2, 3, 4].forEach(function (i) { $('#s' + i).hidden = i !== n; });
+    document.querySelectorAll('#steps li').forEach(function (li) {
+      var s = +li.dataset.s; li.className = s === n ? 'on' : s < n ? 'done' : '';
+    });
+    if (n === 2) renderSlots();
+    if (n === 3) $('#sum3').innerHTML = summary(false);
+    if (n === 4) $('#sum4').innerHTML = summary(true);
+    window.scrollTo(0, 0);
+    try { history.replaceState(null, '', '#step' + n); } catch (e) {}
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-go]');
+    if (a) { e.preventDefault(); go(+a.dataset.go); }
+  });
+
+  /* ── STEP1 ── */
+  function cardHtml(c) {
+    var kind = c.l === '新規' ? '<span class="chip new">新規</span>' : c.l === '再来' ? '<span class="chip rep">再来</span>' : '<span class="chip">全員</span>';
+    var open = c.id === 'CP00000013255394';
+    var price = c.p > 0 ? '<span class="price">' + yen(c.p) + '<small>税込</small></span>' : '<span class="price ask">来店時にご相談</span>';
+    return '<div class="card' + (open ? ' pick' : '') + '">' +
+      '<div class="chips">' + (open ? '<span class="chip gold">OPEN記念</span>' : '') + kind + '<span class="chip time">所要 約' + c.m + '分</span></div>' +
+      '<p class="cname">' + esc(c.n) + '</p>' +
+      '<p class="cdesc">' + esc(c.d) + '</p>' +
+      '<div class="cfoot">' + price + (st.offline
+        ? '<a class="btn line" href="' + HPB_COUPON(c.id) + '" target="_blank" rel="noopener" data-hpb="' + c.id + '">ホットペッパーで予約する</a>'
+        : '<button type="button" class="btn" data-pick="' + c.id + '">空席を確認する</button>') + '</div></div>';
+  }
+  function renderCards() {
+    var list = COUPONS.filter(function (c) { return c.g === st.g; });
+    var top = FEATURED[st.g].map(function (id) { return list.filter(function (c) { return c.id === id; })[0]; }).filter(Boolean);
+    var rest = list.filter(function (c) { return FEATURED[st.g].indexOf(c.id) < 0; });
+    var more = !!st.more[st.g];
+    $('#cards').innerHTML = '<p class="pop">おすすめメニュー</p>' + top.map(cardHtml).join('') +
+      (rest.length ? (more ? '<p class="pop">ほかのメニュー</p>' + rest.map(cardHtml).join('') :
+        '<button type="button" class="more" data-more="1">ほかのメニューを見る（' + rest.length + '件）<span>＋</span></button>') : '');
+  }
+  document.querySelectorAll('.tabs button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      st.g = +b.dataset.g;
+      document.querySelectorAll('.tabs button').forEach(function (x) { x.classList.toggle('on', x === b); });
+      renderCards();
+    });
+  });
+  document.addEventListener('click', function (e) {
+    var h = e.target.closest('[data-hpb], .fallback a');
+    if (h) ev('HPBFallbackClick', { content_name: h.dataset.hpb || (st.coupon && st.coupon.id) || '' });
+  });
+  $('#cards').addEventListener('click', function (e) {
+    if (e.target.closest('[data-more]')) { st.more[st.g] = true; renderCards(); return; }
+    var b = e.target.closest('[data-pick]');
+    if (!b) return;
+    pick(b.dataset.pick);
+  });
+  function pick(id) {
+    var c = COUPONS.filter(function (x) { return x.id === id; })[0];
+    if (!c) return;
+    if (!st.coupon || st.coupon.id !== c.id) { st.date = null; st.time = null; st.week = null; }
+    st.coupon = c;
+    ev('SelectCoupon', { content_name: c.id });
+    go(2);
+  }
+
+  function summary(full) {
+    var c = st.coupon, rows = [];
+    rows.push(['メニュー', '<b>' + esc(c.n) + '</b>']);
+    rows.push(['料金', c.p > 0 ? yen(c.p) + '（税込）' : '来店時にご相談']);
+    rows.push(['所要時間', '約' + c.m + '分']);
+    if (st.date && st.time && st.step >= 3) rows.unshift(['日時', '<b>' + dlabel(st.date) + ' ' + hm(st.time) + '〜</b>']);
+    if (full && st.form) {
+      var f = st.form;
+      rows.push(['お名前', esc(f.sei + ' ' + f.mei) + '（' + esc(f.seiKana + ' ' + f.meiKana) + '）様']);
+      rows.push(['電話', esc(f.tel)]);
+      rows.push(['メール', esc(f.email)]);
+      if (f.note) rows.push(['ご要望', esc(f.note)]);
+    }
+    return rows.map(function (r) { return '<div class="row"><span>' + r[0] + '</span><span>' + r[1] + '</span></div>'; }).join('');
+  }
+
+  /* ── STEP2 ── */
+  function renderSlots() {
+    $('#sum2').innerHTML = summary(false);
+    $('#fb2').classList.remove('show');
+    var area = $('#slotArea');
+    if (st.offline) {
+      area.innerHTML = '';
+      showFallback('#fb2', 'ただいまこのページでのご予約を一時停止しています。お手数ですが、ホットペッパービューティーからご予約ください。');
+      return;
+    }
+    if (!st.slots) {
+      area.innerHTML = '<div class="loading"><span class="spin"></span>空き状況を確認しています…</div>';
+      loadSlots().then(function () { if (st.step === 2) renderSlots(); }, function () { if (st.offline) { if (st.step === 2) renderSlots(); return; } if (st.step === 2) showFallback('#fb2', '空き状況を読み込めませんでした。'); area.innerHTML = '<div style="margin-top:12px"><button type="button" class="btn line" id="retry">もう一度読み込む</button></div>'; $('#retry').onclick = function () { loadSlots(true).catch(function () {}); renderSlots(); }; });
+      return;
+    }
+    var g = st.slots.durs[String(st.coupon.m)];
+    var days = (g && g.days) || [];
+    var weeks = Math.ceil(days.length / 7);
+    if (!days.some(function (d) { return d.times.length; })) {
+      area.innerHTML = '<p class="empty">4週間以内に空きがありません。</p>';
+      showFallback('#fb2', 'その先の日程は、ホットペッパービューティーでご確認いただけます。');
+      return;
+    }
+    // 最初は空きのある最初の週を表示
+    if (st.week == null) {
+      st.week = 0;
+      for (var w = 0; w < weeks; w++) if (days.slice(w * 7, w * 7 + 7).some(function (d) { return d.times.length; })) { st.week = w; break; }
+    }
+    var wd = days.slice(st.week * 7, st.week * 7 + 7);
+    // 行：この週の時刻（受付外だけの行は上下から省く）
+    var all = {};
+    wd.forEach(function (d) { d.slots.forEach(function (t) { all[t] = 1; }); });
+    var rows = Object.keys(all).sort();
+    var mark = function (d, t) { var i = d.slots.indexOf(t); return i < 0 ? '－' : d.cells[i]; };
+    var live = function (t) { return wd.some(function (d) { return mark(d, t) !== '－'; }); };
+    while (rows.length && !live(rows[0])) rows.shift();
+    while (rows.length && !live(rows[rows.length - 1])) rows.pop();
+    var dt = function (d) { return new Date(+d.date.slice(0, 4), +d.date.slice(4, 6) - 1, +d.date.slice(6)); };
+    var f = dt(wd[0]), l = dt(wd[wd.length - 1]);
+    var html = '<div class="wk"><button type="button" data-wk="-1"' + (st.week === 0 ? ' disabled' : '') + '>‹ 前の1週間</button>' +
+      '<span>' + (f.getMonth() + 1) + '月' + f.getDate() + '日〜' + (l.getMonth() !== f.getMonth() ? (l.getMonth() + 1) + '月' : '') + l.getDate() + '日</span>' +
+      '<button type="button" data-wk="1"' + (st.week >= weeks - 1 ? ' disabled' : '') + '>次の1週間 ›</button></div>' +
+      '<p class="legend"><span><b>◎</b> 予約できます</span><span>× 埋まっています</span><span>－ 受付時間外</span></p>' +
+      '<table class="grid"><thead><tr><th class="corner"></th>' + wd.map(function (d) {
+        var x = dt(d), cls = d.hol || x.getDay() === 0 ? 'sun' : x.getDay() === 6 ? 'sat' : '';
+        return '<th class="' + cls + '"><span class="d">' + x.getDate() + '</span><span class="w">(' + (d.hol ? '祝' : WD[x.getDay()]) + ')</span></th>';
+      }).join('') + '</tr></thead><tbody>' + rows.map(function (t) {
+        var hr = t.slice(2) === '00';
+        return '<tr' + (hr ? ' class="hr"' : '') + '><th' + (hr ? ' class="hr"' : '') + '>' + hm(t) + '</th>' + wd.map(function (d) {
+          var m = mark(d, t);
+          if (m === '◎') return '<td class="o"><button type="button" data-date="' + d.date + '" data-time="' + t + '" aria-label="' + dlabel(d.date) + ' ' + hm(t) + 'から予約する"' + (st.date === d.date && st.time === t ? ' class="on"' : '') + '>◎</button></td>';
+          return m === '×' ? '<td class="x">×</td>' : '<td class="n">－</td>';
+        }).join('') + '</tr>';
+      }).join('') + '</tbody></table>' +
+      '<p class="sub" style="margin-top:10px">◎の日時から施術を開始できます。ご希望の◎を押してください。</p>';
+    area.innerHTML = html;
+  }
+  $('#slotArea').addEventListener('click', function (e) {
+    var w = e.target.closest('[data-wk]');
+    if (w && !w.disabled) { st.week += Number(w.dataset.wk); renderSlots(); var top = $('#slotArea').getBoundingClientRect().top + window.scrollY - 60; window.scrollTo(0, top); return; }
+    var b = e.target.closest('[data-time]');
+    if (b) { st.date = b.dataset.date; st.time = b.dataset.time; ev('SelectTime'); go(3); }
+  });
+
+  function showFallback(sel, msg) {
+    var el = $(sel);
+    el.innerHTML = esc(msg) + '<br><a class="btn line" href="' + HPB_COUPON(st.coupon ? st.coupon.id : '') + '" target="_blank" rel="noopener">ホットペッパービューティーで予約する</a>';
+    el.classList.add('show');
+  }
+
+  /* ── STEP3 ── */
+  var KATA = /^[ァ-ヶー]+$/;
+  var toKata = function (s) { return String(s || '').normalize('NFKC').replace(/[\s　]/g, '').replace(/[ぁ-ゖ]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) + 0x60); }); };
+
+  /* ── お名前を打つと、変換前のひらがなを拾ってフリガナに自動で入れる（違っていたらお客様が直せる。フリガナ欄を自分で触ったら以後は上書きしない） ── */
+  function autoKana(nameSel, kanaSel) {
+    var nm = $(nameSel), kn = $(kanaSel);
+    var base = '', buf = '', pend = '', manual = false;
+    var TYPING = /^[ぁ-ゖァ-ヶーa-zA-Zａ-ｚＡ-Ｚ'’]*$/;
+    var kanaOnly = function (x) { return x.replace(/[^ぁ-ゖァ-ヶー]/g, ''); };
+    var put = function () { if (!manual) kn.value = toKata(buf + kanaOnly(pend)); };
+    var commit = function () { buf += kanaOnly(pend); pend = ''; base = nm.value; };
+    nm.addEventListener('compositionstart', function () { base = nm.value; pend = ''; });
+    nm.addEventListener('compositionend', function () { setTimeout(function () { commit(); put(); }, 0); });
+    nm.addEventListener('input', function (e) {
+      // iPhoneは変換を確定するとき、いったん欄を空にしてから漢字を入れ直す（deleteCompositionText）。これでフリガナを消さない
+      if (e.inputType === 'deleteCompositionText') return;
+      var v = nm.value;
+      if (!v.replace(/[\s　]/g, '')) { if (!e.isComposing) { base = buf = pend = ''; put(); } return; }
+      if (v.indexOf(base) === 0) {
+        var typed = v.slice(base.length).replace(/[\s　]/g, '');
+        if (TYPING.test(typed)) pend = typed; else commit();
+      } else if (TYPING.test(v.replace(/[\s　]/g, ''))) {
+        buf = ''; pend = v.replace(/[\s　]/g, ''); base = '';
+      } else {
+        pend = ''; base = v;
+      }
+      put();
+    });
+    kn.addEventListener('input', function () { manual = kn.value !== ''; });
+  }
+  autoKana('input[name=sei]', 'input[name=seiKana]');
+  autoKana('input[name=mei]', 'input[name=meiKana]');
+  var toTel = function (s) { return String(s || '').replace(/[０-９]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0xFEE0); }).replace(/[^\d]/g, '').replace(/^(?:00)?810?(?=[1-9]\d{8,9}$)/, '0'); };
+  // iPhoneの候補から選ぶと「+81 80…」の形で入るので、欄を離れたときに「080…」へ直して見せる
+  $('input[name=tel]').addEventListener('blur', function () { var t = toTel(this.value); if (/^0\d{9,10}$/.test(t)) this.value = t; });
+  $('#form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = e.target, v = function (n) { return (f.elements[n].value || '').trim(); };
+    var data = { sei: v('sei'), mei: v('mei'), seiKana: toKata(v('seiKana')), meiKana: toKata(v('meiKana')), tel: toTel(v('tel')), email: v('email'), note: v('note'), website: v('website') };
+    var bad = {
+      name: !data.sei || !data.mei,
+      kana: !KATA.test(data.seiKana) || !KATA.test(data.meiKana),
+      tel: !/^0\d{9,10}$/.test(data.tel),
+      email: !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)
+    };
+    var any = false;
+    Object.keys(bad).forEach(function (k) { f.querySelector('[data-k=' + k + ']').classList.toggle('bad', bad[k]); any = any || bad[k]; });
+    var al = $('#alert3');
+    if (!any && !f.elements.agree.checked) { al.textContent = 'プライバシーポリシーへの同意が必要です'; al.classList.add('show'); return; }
+    al.classList.remove('show');
+    if (any) { var bads = f.querySelectorAll('.bad input'), first = null; for (var i = 0; i < bads.length && !first; i++) if (!bads[i].value || bads[i].closest('.f').dataset.k !== 'name') first = bads[i]; (first || bads[0]).focus(); return; }
+    f.elements.seiKana.value = data.seiKana; f.elements.meiKana.value = data.meiKana;
+    st.form = data;
+    go(4);
+  });
+
+  /* ── STEP4 確定 ── */
+  /* どこから来た予約か（広告のA/Bテスト用。LP経由=lp・広告から直行=ad）。ページを読み直しても消えないように覚えておく */
+  var SRC = (function () {
+    var v = new URLSearchParams(location.search).get('src') || '';
+    try { if (v) sessionStorage.setItem('mc_src', v); else v = sessionStorage.getItem('mc_src') || ''; } catch (e) {}
+    if (!v && /\/harajuku\/(index\.html)?($|[?#])/.test(document.referrer)) v = 'lp';
+    return String(v).replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 20) || 'direct';
+  })();
+  var sending = false;
+  $('#confirm').addEventListener('click', function () {
+    if (sending) return;
+    sending = true;
+    var b = this, al = $('#alert4');
+    b.disabled = true; b.innerHTML = '<span class="spin" style="border-top-color:#fff"></span>空きを確認して予約しています…';
+    al.classList.remove('show'); $('#fb4').classList.remove('show');
+    var body = Object.assign({ action: 'reserve', couponId: st.coupon.id, date: st.date, time: st.time, src: SRC }, st.form);
+    var ctl = new AbortController();
+    var timer = setTimeout(function () { ctl.abort(); }, 30000);
+    fetch(API + '/reserve', { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body), signal: ctl.signal })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        clearTimeout(timer);
+        if (d.ok) {
+          try { sessionStorage.setItem('mc_rsv', JSON.stringify({ id: d.id, date: st.date, time: st.time, coupon: st.coupon.n, price: st.coupon.p, dur: st.coupon.m, f: { sei: st.form.sei, mei: st.form.mei, seiKana: st.form.seiKana, meiKana: st.form.meiKana, tel: st.form.tel, email: st.form.email, note: st.form.note } })); } catch (e) {}
+          location.href = 'thanks.html#' + encodeURIComponent(d.id);
+          return;
+        }
+        if (d.reason === 'taken') {
+          st.time = null; st.slots = null; loadSlots(true).catch(function () {});
+          go(2);
+          $('#alert2').textContent = d.error; $('#alert2').classList.add('show');
+        } else if (d.reason === 'offline') {
+          setOffline();
+          showFallback('#fb4', d.error);
+        } else if (d.reason === 'hpb') {
+          showFallback('#fb4', '申し訳ありません。ただいま空き状況を確認できないため、ご予約を確定できませんでした。');
+        } else {
+          al.textContent = d.error || 'ご予約を確定できませんでした。'; al.classList.add('show');
+        }
+      })
+      .catch(function () {
+        clearTimeout(timer);
+        al.innerHTML = '通信が途中で切れました。もう一度「予約を確定する」を押してください（同じ内容で二重に予約されることはありません）。何度か失敗する場合はお電話（<a href="tel:0368227689">03-6822-7689</a>）でご予約ください。';
+        al.classList.add('show');
+      })
+      .then(function () { sending = false; b.disabled = false; b.textContent = '予約を確定する'; });
+  });
+
+  /* ── 初期表示（LPから ?coupon=CP… で来たら日時から） ── */
+  renderCards();
+  var q = new URLSearchParams(location.search).get('coupon');
+  if (q && COUPONS.some(function (c) { return c.id === q; })) pick(q); else go(1);
+})();
+</script>
+</body>
+</html>
