@@ -286,6 +286,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     if (st.offline) return;
     st.offline = true;
     ev('HPBFallbackShown');
+    funnel('x_offline');
     $('#offline').hidden = false;
     $('#sub1').hidden = true;
     if (st.step === 1) renderCards();
@@ -295,6 +296,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   /* ── 画面切り替え ── */
   function go(n) {
     st.step = n;
+    funnel(['', 's1_menu', 's2_date', 's3_info', 's4_confirm'][n]);
     [1, 2, 3, 4].forEach(function (i) { $('#s' + i).hidden = i !== n; });
     document.querySelectorAll('#steps li').forEach(function (li) {
       var s = +li.dataset.s; li.className = s === n ? 'on' : s < n ? 'done' : '';
@@ -440,6 +442,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
   function showFallback(sel, msg) {
     var el = $(sel);
+    funnel('x_fallback' + sel.replace(/[^a-z0-9]/g, ''));
     el.innerHTML = esc(msg) + '<br><a class="btn line" href="' + HPB_COUPON(st.coupon ? st.coupon.id : '') + '" target="_blank" rel="noopener">ホットペッパービューティーで予約する</a>';
     el.classList.add('show');
   }
@@ -493,7 +496,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     var any = false;
     Object.keys(bad).forEach(function (k) { f.querySelector('[data-k=' + k + ']').classList.toggle('bad', bad[k]); any = any || bad[k]; });
     var al = $('#alert3');
-    if (!any && !f.elements.agree.checked) { al.textContent = 'プライバシーポリシーへの同意が必要です'; al.classList.add('show'); return; }
+    Object.keys(bad).forEach(function (k) { if (bad[k]) funnel('x_err_' + k); });
+    if (!any && !f.elements.agree.checked) { funnel('x_err_agree'); al.textContent = 'プライバシーポリシーへの同意が必要です'; al.classList.add('show'); return; }
     al.classList.remove('show');
     if (any) { var bads = f.querySelectorAll('.bad input'), first = null; for (var i = 0; i < bads.length && !first; i++) if (!bads[i].value || bads[i].closest('.f').dataset.k !== 'name') first = bads[i]; (first || bads[0]).focus(); return; }
     f.elements.seiKana.value = data.seiKana; f.elements.meiKana.value = data.meiKana;
@@ -509,10 +513,27 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     if (!v && /\/harajuku\/(index\.html)?($|[?#])/.test(document.referrer)) v = 'lp';
     return String(v).replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 20) || 'direct';
   })();
+  /* どの画面まで進んだかを窓口に数えさせる（離脱の計測）。送るのは「画面の名前・経路・ランダムな番号」だけで個人情報は送らない。
+     確認用表示（手元・?staff=1）では送らない。同じ人の同じ画面は1回だけ数える */
+  var SID = (function () {
+    var x = '';
+    try { x = sessionStorage.getItem('mc_sid') || ''; } catch (e) {}
+    if (!/^[a-z0-9]{8,30}$/.test(x)) { x = (Math.random().toString(36).slice(2, 10) + Date.now().toString(36)).slice(0, 24); try { sessionStorage.setItem('mc_sid', x); } catch (e) {} }
+    return x;
+  })();
+  var sentSteps = {};
+  function funnel(step) {
+    if (window.MC_PREVIEW || sentSteps[step]) return;
+    sentSteps[step] = 1;
+    try { if (typeof clarity === 'function') clarity('event', step); } catch (e) {}
+    try { navigator.sendBeacon(API + '/ev', JSON.stringify({ sid: SID, step: step, src: SRC })); } catch (e) {}
+  }
+  document.addEventListener('click', function (e) { var a = e.target.closest('a[href*="hotpepper"]'); if (a) funnel(a.dataset.hpb === 'repeat' ? 'x_hpb_repeat' : 'x_hpb_go'); });
   var sending = false;
   $('#confirm').addEventListener('click', function () {
     if (sending) return;
     sending = true;
+    funnel('s5_submit');
     var b = this, al = $('#alert4');
     b.disabled = true; b.innerHTML = '<span class="spin" style="border-top-color:#fff"></span>空きを確認して予約しています…';
     al.classList.remove('show'); $('#fb4').classList.remove('show');
@@ -524,11 +545,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
       .then(function (d) {
         clearTimeout(timer);
         if (d.ok) {
+          funnel('s6_done');
           try { sessionStorage.setItem('mc_rsv', JSON.stringify({ id: d.id, date: st.date, time: st.time, coupon: st.coupon.n, price: st.coupon.p, dur: st.coupon.m, f: { sei: st.form.sei, mei: st.form.mei, seiKana: st.form.seiKana, meiKana: st.form.meiKana, tel: st.form.tel, email: st.form.email, note: st.form.note } })); } catch (e) {}
           location.href = 'thanks.html#' + encodeURIComponent(d.id);
           return;
         }
         if (d.reason === 'taken') {
+          funnel('x_taken');
           st.time = null; st.slots = null; loadSlots(true).catch(function () {});
           go(2);
           $('#alert2').textContent = d.error; $('#alert2').classList.add('show');
