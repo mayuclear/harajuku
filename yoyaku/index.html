@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://harajuku-yoyaku.mayuclear.workers.dev">
 <!-- Meta Pixel（お客様の個人情報は送らない） -->
-<script>window.MC_PREVIEW=/^(localhost|127\.0\.0\.1|192\.168\.[0-9.]+|10\.[0-9.]+)$/.test(location.hostname)||/[?&]staff=1/.test(location.search);if(window.MC_PREVIEW)window.fbq=function(){};/* 手元の確認用表示では計測しない */</script>
+<script>window.MC_PREVIEW=(function(){try{if(/[?&]staff=1/.test(location.search))sessionStorage.setItem('mc_staff','1');return sessionStorage.getItem('mc_staff')==='1'}catch(e){return /[?&]staff=1/.test(location.search)}})()||/^(localhost|127\.0\.0\.1|192\.168\.[0-9.]+|10\.[0-9.]+)$/.test(location.hostname);if(window.MC_PREVIEW)window.fbq=function(){};/* 手元の確認用表示では計測しない */</script>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
