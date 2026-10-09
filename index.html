@@ -359,7 +359,7 @@ a{color:inherit;text-decoration:none}
 .fv2 .offer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;background:#fff;border:1px solid var(--gold-l);border-top:3px solid var(--gold);padding:9px 12px;text-align:left}
 .fv2 .o-l{display:flex;flex-direction:column;gap:3px;min-width:0}
 .fv2 .o-tag{align-self:flex-start;font-size:10.5px;font-weight:700;color:#71501e;background:#f4ead6;border:1px solid #b49a66;padding:1px 7px;letter-spacing:.06em}
-.fv2 .o-menu{font-family:var(--serif);font-weight:600;color:var(--navy);font-size:13.5px;line-height:1.35}
+.fv2 .o-menu{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:16.5px;line-height:1.35}
 .fv2 .o-menu small{display:block;font-size:10.5px;color:var(--gray);font-family:var(--sans);font-weight:500}
 .fv2 .o-r{text-align:right;line-height:1;white-space:nowrap}
 .fv2 .o-r s{display:block;font-family:var(--serif);font-size:17px;font-weight:600;color:#6f7a8e;text-decoration:line-through;text-decoration-color:#b23b3b;text-decoration-thickness:2px;margin-bottom:3px}
@@ -408,6 +408,26 @@ a{color:inherit;text-decoration:none}
 .hd2 .hd-n{font-style:normal;font-family:var(--serif);font-size:10.5px;font-weight:700;color:#7a5a1e;background:linear-gradient(180deg,#fffaf0,#f6ead2);border:1.5px solid #b49a66;box-shadow:inset 0 0 0 1px #fff;padding:1px 5px;border-radius:2px;letter-spacing:0;white-space:nowrap;flex:none}
 .hd2 .brand b,.hd2 .brand small{white-space:nowrap}
 @media(max-width:375px){.hd2 .brand{gap:6px}.hd2 .brand b{font-size:15px}.hd2 .brand small{font-size:9.5px;padding-left:6px}.hd2 .hd-n{font-size:10px;padding:2px 5px}}
+.fv2 .o-menu{white-space:nowrap}
+@media(max-width:375px){.fv2 .o-menu{font-size:14.5px}}
+.fv2 .more{display:flex;flex-direction:column;align-items:center;gap:0;margin-top:6px;height:30px;justify-content:flex-start}
+.fv2 .more .chev{display:block;width:14px;height:14px;border-right:2.5px solid var(--gold);border-bottom:2.5px solid var(--gold);transform:rotate(45deg);margin-top:-6px;animation:chev-bob 1.6s ease-in-out infinite;font-size:0;line-height:0}
+.fv2 .more .chev:first-child{margin-top:0}
+.fv2 .more .chev:nth-child(2){animation-delay:.2s;opacity:.55}
+@keyframes chev-bob{0%,100%{transform:translateY(0) rotate(45deg)}50%{transform:translateY(5px) rotate(45deg)}}
+@media(prefers-reduced-motion:reduce){.fv2 .more .chev{animation:none}}
+.fv2 .g2{margin-top:5px}
+.fv2 .cta{margin-top:8px}
+.fv2 .more{margin-top:5px;height:24px}
+/* 返金保証（自信の表現・2026/10/9） */
+.fv2 .g3{display:flex;align-items:center;gap:10px;margin-top:7px;background:linear-gradient(110deg,#f6f9fd,#eef3fa);border:1px solid #d6e0ef;border-radius:6px;padding:6px 10px;text-align:left}
+.fv2 .g3 .shield{flex:none;width:34px;height:34px;border-radius:50%;background:#fff;border:1px solid #d9c7a1;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(27,47,110,.12)}
+.fv2 .g3 b{display:block;font-family:var(--serif);font-weight:700;font-size:15px;color:var(--navy);line-height:1.35;white-space:nowrap}
+.fv2 .g3 b em{font-style:normal;font-size:12px;font-weight:600;color:#9a7b3f;letter-spacing:0;margin-right:2px}
+.fv2 .g3 small{display:block;font-size:9.5px;color:var(--gray);line-height:1.4;margin-top:1px;white-space:nowrap;letter-spacing:-.02em}
+.fv2 .g3 .shield{width:30px;height:30px}
+@media(max-width:375px){.fv2 .g3 b{font-size:14px}.fv2 .g3 b em{font-size:11px}.fv2 .g3 small{font-size:9px}}
+.fv2 .ba-top img{height:188px}
 </style>
 </head>
 <body>
@@ -428,11 +448,11 @@ a{color:inherit;text-decoration:none}
     <div class="o-l"><span class="o-tag">OPEN記念・初回限定</span><span class="o-menu">美眉ワックス＋毛量調整<small>（カット＋間引き込）</small></span></div>
     <div class="o-r"><p class="was2"><span>通常価格</span><s>¥4,500</s></p><p class="now2"><span class="off">1,000円OFF</span><span class="lbl">特別価格</span></p><b><i>¥</i>3,500</b><small>税込</small></div>
   </div>
-  <p class="g2"><span class="seal">安心</span><span><b>全額返金保証つき</b><small>仕上がりにご満足いただけなければ、施術後7日以内のお申し出で全額返金</small></span></p>
+  <div class="g3"><span class="shield" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2.5l7.5 3v5.6c0 4.6-3.1 8.6-7.5 10.4-4.4-1.8-7.5-5.8-7.5-10.4V5.5z" fill="#1b2f6e"/><path d="M8.2 12.2l2.6 2.6 5-5.2" fill="none" stroke="#e8d3a2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="g3t"><b><em>仕上がりに自信があるから、</em>全額返金保証</b><small>ご満足いただけなければ、施術後7日以内のお申し出で全額返金</small></span></div>
   <a class="cta shine" href="yoyaku/?coupon=CP00000013255394&amp;src=lp" data-cta="fv">
     <span class="in"><small>24時間WEB予約OK｜1分で完了</small><strong>今すぐ予約する</strong></span>
   </a>
-  <a class="more" href="#mayuclear-concerns">続きを見る<span>⌄</span></a>
+  <a class="more" href="#mayuclear-concerns" aria-label="続きを見る"><span class="chev"></span><span class="chev"></span></a>
 </section>
 
 <!-- 2. お悩み（鵜沼さん作のHTML 2026/10/7） -->
