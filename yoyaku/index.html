@@ -465,26 +465,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   }
 
   /* ── STEP3 ── */
-  /* ── お名前を打つときの変換前のひらがなを裏で拾う（SBのカナ用。画面には出さない）。
-     iPhoneは変換確定のとき欄を一瞬空にする（deleteCompositionText）ので、それでは消さない ── */
-  var hiraToKata = function (x) { return String(x || '').normalize('NFKC').replace(/[ぁ-ゖ]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) + 0x60); }); };
-  var kanaBuf = (function () {
-    var nm = $('input[name=name]'), base = '', buf = '', pend = '';
-    var TYPING = /^[ぁ-ゖァ-ヶーa-zA-Zａ-ｚＡ-Ｚ'’]*$/;
-    var only = function (x) { return x.replace(/[^ぁ-ゖァ-ヶー]/g, ''); };
-    var commit = function () { buf += only(pend); pend = ''; base = nm.value; };
-    nm.addEventListener('compositionstart', function () { base = nm.value; pend = ''; });
-    nm.addEventListener('compositionend', function () { setTimeout(commit, 0); });
-    nm.addEventListener('input', function (e) {
-      if (e.inputType === 'deleteCompositionText') return;
-      var v = nm.value;
-      if (!v.replace(/[\s　]/g, '')) { if (!e.isComposing) { base = buf = pend = ''; } return; }
-      if (v.indexOf(base) === 0) { var typed = v.slice(base.length).replace(/[\s　]/g, ''); if (TYPING.test(typed)) pend = typed; else commit(); }
-      else if (TYPING.test(v.replace(/[\s　]/g, ''))) { buf = ''; pend = v.replace(/[\s　]/g, ''); base = ''; }
-      else { pend = ''; base = v; }
-    });
-    return function () { return buf + only(pend); };
-  })();
   var toTel = function (s) { return String(s || '').replace(/[０-９]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0xFEE0); }).replace(/[^\d]/g, '').replace(/^(?:00)?810?(?=[1-9]\d{8,9}$)/, '0'); };
   // iPhoneの候補から選ぶと「+81 80…」の形で入るので、欄を離れたときに「080…」へ直して見せる
   ['blur', 'change', 'input'].forEach(function (ev) {
@@ -497,10 +477,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     e.preventDefault();
     var f = e.target, v = function (n) { return (f.elements[n].value || '').trim(); };
     // お名前は分けずに全体を姓の欄へ（SBは姓とカナ1欄だけで登録できる・2026/10/19実測）。
-    // カナはお客様には聞かず、お名前を打ったときの変換前のひらがなを裏で拾う（拾えなければ空。SBには待機役が仮のカナを入れる）
+    // フリガナはお客様に聞かない。SBには待機役が「ミニュウリョク」を入れる（2026/10/19 鵜沼さん「カタカナはすべて未入力でOK」）
     var full = v('name').replace(/[\s　]+/g, ' ').trim();
-    var kana = hiraToKata(kanaBuf()).replace(/[\s　]/g, '');
-    var data = { sei: full, mei: '', seiKana: /^[ァ-ヶー]+$/.test(kana) ? kana : '', meiKana: '', tel: toTel(v('tel')), email: v('email'), note: v('note'), website: v('website') };
+    var data = { sei: full, mei: '', seiKana: '', meiKana: '', tel: toTel(v('tel')), email: v('email'), note: v('note'), website: v('website') };
     var empty = { name: !full, tel: !v('tel'), email: !v('email') };
     var bad = {
       name: !full,
