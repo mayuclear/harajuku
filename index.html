@@ -428,6 +428,7 @@ a{color:inherit;text-decoration:none}
 .fv2 .g3 .shield{width:30px;height:30px}
 @media(max-width:375px){.fv2 .g3 b{font-size:14px}.fv2 .g3 b em{font-size:11px}.fv2 .g3 small{font-size:9px}}
 .fv2 .ba-top img{height:188px}
+[data-go]{cursor:pointer;-webkit-tap-highlight-color:rgba(27,47,110,.08)}
 </style>
 </head>
 <body>
@@ -440,11 +441,11 @@ a{color:inherit;text-decoration:none}
 
 <!-- 1. ファーストビュー -->
 <section class="fv fv2" id="top">
-  <div class="gift gift-top"><b>このページからのご予約 先着10名様限定</b><p>選べるWAX脱毛<em>1か所プレゼント</em></p><small>もみあげの内側 or 目元〜こめかみの間（ご来店時にお選びください）</small></div>
+  <div class="gift gift-top" data-go="fv_gift" role="link" tabindex="0"><b>このページからのご予約 先着10名様限定</b><p>選べるWAX脱毛<em>1か所プレゼント</em></p><small>もみあげの内側 or 目元〜こめかみの間（ご来店時にお選びください）</small></div>
   <div class="chips"><span class="c-gold">本日空き◎</span><span>原宿・表参道 徒歩5分</span><span>口コミ <b>4.9</b><i>★</i><sup class="ref">※2</sup></span></div>
   <h1 class="vh">眉を整えて、清潔感アップ。メンズ眉毛サロン マユクリア原宿・表参道</h1>
   <div class="ba-top"><img src="img/fv_ba_top2.webp" alt="施術前と施術後（2名）" width="720" height="448"><sup class="ref">※3</sup></div>
-  <div class="offer">
+  <div class="offer" data-go="fv_offer" role="link" tabindex="0">
     <div class="o-l"><span class="o-tag">OPEN記念・初回限定</span><span class="o-menu">美眉ワックス＋毛量調整<small>（カット＋間引き込）</small></span></div>
     <div class="o-r"><p class="was2"><span>通常価格</span><s>¥4,500</s></p><p class="now2"><span class="off">1,000円OFF</span><span class="lbl">特別価格</span></p><b><i>¥</i>3,500</b><small>税込</small></div>
   </div>
@@ -675,6 +676,18 @@ document.querySelectorAll('a[data-cta]').forEach(function(a){
     try{fbq('track','Lead',{content_name:a.dataset.cta});}catch(e){}
     setTimeout(go,300);
   });
+});
+// 最初の画面の特典の帯・メニューと価格の枠も、押したら予約ボタンと同じ予約フォームへ進む（Clarityで押す人が多かったため・2026/10/19）
+document.querySelectorAll('[data-go]').forEach(function(el){
+  var open=function(){
+    var href=document.querySelector('a[data-cta="fv"]').href;
+    var go=function(){location.href=href};
+    if(typeof fbq!=='function'){go();return;}
+    try{fbq('track','Lead',{content_name:el.dataset.go});}catch(e){}
+    setTimeout(go,300);
+  };
+  el.addEventListener('click',open);
+  el.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();open();}});
 });
 </script>
 <script>
