@@ -136,9 +136,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .f .err{font-size:12px;color:var(--red);margin-top:4px;display:none}
 .f.bad input{border-color:var(--red);background:#fffafa}
 .f.bad .err{display:block}
-.agree-note{font-size:12px;color:var(--gray);text-align:center;margin:18px 0 0;line-height:1.6}
-.agree-note a{color:var(--navy-l)}
-.wait-note{font-size:12px;color:var(--gray);text-align:center;margin:10px 0 0;line-height:1.6}
+.agree{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:18px}
+.agree input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--navy)}
+.agree a{color:var(--navy-l)}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 
 .notice{font-size:12px;color:var(--gray);background:var(--gold-bg);border-left:3px solid var(--gold);padding:10px 12px;margin-top:14px;line-height:1.7}
@@ -198,8 +198,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
       <form id="form" novalidate data-clarity-mask="true">
         <div class="f" data-k="name">
           <label class="l">お名前<em>必須</em></label>
-          <input type="text" name="name" placeholder="例：山田 太郎" autocomplete="name">
+          <div class="two"><input type="text" name="sei" placeholder="姓（例：山田）" autocomplete="family-name"><input type="text" name="mei" placeholder="名（例：太郎）" autocomplete="given-name"></div>
           <p class="err">お名前を入力してください</p>
+        </div>
+        <div class="f" data-k="kana">
+          <label class="l">フリガナ<em>必須</em><span class="ok">ひらがなでもOK</span></label>
+          <div class="two"><input type="text" name="seiKana" placeholder="セイ（例：ヤマダ）"><input type="text" name="meiKana" placeholder="メイ（例：タロウ）"></div>
+          <p class="err">フリガナをカタカナかひらがなで入力してください</p>
         </div>
         <div class="f" data-k="tel">
           <label class="l">電話番号<em>必須</em></label>
@@ -218,9 +223,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
           <textarea name="note" maxlength="60" placeholder="例：眉の形の希望、気になっていること など（60文字まで）"></textarea>
         </div>
         <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <label class="agree"><input type="checkbox" name="agree"><span><a href="../privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意する</span></label>
         <div class="alert" id="alert3"></div>
-        <p class="agree-note">確認画面へ進むと、<br><a href="../privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意したことになります</p>
-        <div style="margin-top:8px"><button type="submit" class="btn wide">確認画面へ進む</button></div>
+        <div style="margin-top:18px"><button type="submit" class="btn wide">確認画面へ進む</button></div>
       </form>
     </div>
   </section>
@@ -236,7 +241,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
       <div class="alert" id="alert4"></div>
       <div class="fallback" id="fb4"></div>
       <div style="margin-top:18px"><button type="button" class="btn wide gold" id="confirm">予約を確定する</button></div>
-      <p class="wait-note" id="waitNote" hidden>空きを確かめながら予約しています。ふだん3〜5秒ほどで終わります。このままお待ちください</p>
 
     </div>
   </section>
@@ -268,7 +272,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   function loadSlots(force) {
     if (slotsPromise && !force) return slotsPromise;
     var ctl = new AbortController();
-    var timer = setTimeout(function () { ctl.abort(); }, 25000);
+    var timer = setTimeout(function () { ctl.abort(); }, 20000);
     slotsPromise = fetch(API + '/slots', { signal: ctl.signal })
       .then(function (r) { return r.json(); })
       .then(function (d) { clearTimeout(timer); if (!d.ok) { if (d.reason === 'offline') setOffline(); throw new Error(d.error || 'ng'); } st.slots = d; st.slotsErr = false; return d; })
@@ -290,8 +294,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   }
 
   /* ── 画面切り替え ── */
-  function go(n, how) {
-    var from = st.step;
+  function go(n) {
     st.step = n;
     funnel(['', 's1_menu', 's2_date', 's3_info', 's4_confirm'][n]);
     [1, 2, 3, 4].forEach(function (i) { $('#s' + i).hidden = i !== n; });
@@ -302,25 +305,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     if (n === 3) $('#sum3').innerHTML = summary(false);
     if (n === 4) $('#sum4').innerHTML = summary(true);
     window.scrollTo(0, 0);
-    try {
-      if (how === 'pop') {} // 戻る・進むで来たときは履歴をいじらない
-      else if (how === 'replace' || !from || n <= from) history.replaceState({ step: n }, '', '#step' + n);
-      else history.pushState({ step: n }, '', '#step' + n);
-    } catch (e) {}
+    try { history.replaceState(null, '', '#step' + n); } catch (e) {}
   }
   document.addEventListener('click', function (e) {
     var a = e.target.closest('[data-go]');
     if (a) { e.preventDefault(); go(+a.dataset.go); }
-  });
-
-  try { history.scrollRestoration = 'manual'; } catch (e) {}
-  window.addEventListener('popstate', function (e) {
-    var n = (e.state && e.state.step) || +((location.hash.match(/step(\d)/) || [])[1] || 1);
-    // その画面に必要な選択が無ければ、選べる画面まで戻す
-    if (n >= 2 && !st.coupon) n = 1;
-    if (n >= 3 && !st.time) n = 2;
-    if (n >= 4 && !st.form) n = 3;
-    go(n, 'pop');
   });
 
   /* ── STEP1 ── */
@@ -362,13 +351,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     if (!b) return;
     pick(b.dataset.pick);
   });
-  function pick(id, how) {
+  function pick(id) {
     var c = COUPONS.filter(function (x) { return x.id === id; })[0];
     if (!c) return;
     if (!st.coupon || st.coupon.id !== c.id) { st.date = null; st.time = null; st.week = null; }
     st.coupon = c;
     ev('SelectCoupon', { content_name: c.id });
-    go(2, how);
+    go(2);
   }
 
   function summary(full) {
@@ -379,7 +368,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     if (st.date && st.time && st.step >= 3) rows.unshift(['日時', '<b>' + dlabel(st.date) + ' ' + hm(st.time) + '〜</b>']);
     if (full && st.form) {
       var f = st.form;
-      rows.push(['お名前', esc((f.sei + ' ' + f.mei).trim()) + (f.seiKana ? '（' + esc((f.seiKana + ' ' + f.meiKana).trim()) + '）' : '') + ' 様']);
+      rows.push(['お名前', esc(f.sei + ' ' + f.mei) + '（' + esc(f.seiKana + ' ' + f.meiKana) + '）様']);
       rows.push(['電話', esc(f.tel)]);
       rows.push(['メール', esc(f.email)]);
       if (f.note) rows.push(['ご要望', esc(f.note)]);
@@ -399,13 +388,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     }
     if (!st.slots) {
       area.innerHTML = '<div class="loading"><span class="spin"></span>空き状況を確認しています…</div>';
-      loadSlots().then(function () { st.slotTries = 0; if (st.step === 2) renderSlots(); }, function () {
-        if (st.offline) { if (st.step === 2) renderSlots(); return; }
-        // 全店フォームと同じく、すぐに失敗を見せず自動で読み直す（一時的な失敗で離脱させない）
-        st.slotTries = (st.slotTries || 0) + 1;
-        if (st.slotTries <= 2) { setTimeout(function () { if (st.step === 2) renderSlots(); }, 3000); return; }
-        st.slotTries = 0;
-        if (st.step === 2) showFallback('#fb2', '空き状況を読み込めませんでした。'); area.innerHTML = '<div style="margin-top:12px"><button type="button" class="btn line" id="retry">もう一度読み込む</button></div>'; $('#retry').onclick = function () { loadSlots(true).catch(function () {}); renderSlots(); }; });
+      loadSlots().then(function () { if (st.step === 2) renderSlots(); }, function () { if (st.offline) { if (st.step === 2) renderSlots(); return; } if (st.step === 2) showFallback('#fb2', '空き状況を読み込めませんでした。'); area.innerHTML = '<div style="margin-top:12px"><button type="button" class="btn line" id="retry">もう一度読み込む</button></div>'; $('#retry').onclick = function () { loadSlots(true).catch(function () {}); renderSlots(); }; });
       return;
     }
     var g = st.slots.durs[String(st.coupon.m)];
@@ -465,31 +448,59 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   }
 
   /* ── STEP3 ── */
+  var KATA = /^[ァ-ヶー]+$/;
+  var toKata = function (s) { return String(s || '').normalize('NFKC').replace(/[\s　]/g, '').replace(/[ぁ-ゖ]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) + 0x60); }); };
+
+  /* ── お名前を打つと、変換前のひらがなを拾ってフリガナに自動で入れる（違っていたらお客様が直せる。フリガナ欄を自分で触ったら以後は上書きしない） ── */
+  function autoKana(nameSel, kanaSel) {
+    var nm = $(nameSel), kn = $(kanaSel);
+    var base = '', buf = '', pend = '', manual = false;
+    var TYPING = /^[ぁ-ゖァ-ヶーa-zA-Zａ-ｚＡ-Ｚ'’]*$/;
+    var kanaOnly = function (x) { return x.replace(/[^ぁ-ゖァ-ヶー]/g, ''); };
+    var put = function () { if (!manual) kn.value = toKata(buf + kanaOnly(pend)); };
+    var commit = function () { buf += kanaOnly(pend); pend = ''; base = nm.value; };
+    nm.addEventListener('compositionstart', function () { base = nm.value; pend = ''; });
+    nm.addEventListener('compositionend', function () { setTimeout(function () { commit(); put(); }, 0); });
+    nm.addEventListener('input', function (e) {
+      // iPhoneは変換を確定するとき、いったん欄を空にしてから漢字を入れ直す（deleteCompositionText）。これでフリガナを消さない
+      if (e.inputType === 'deleteCompositionText') return;
+      var v = nm.value;
+      if (!v.replace(/[\s　]/g, '')) { if (!e.isComposing) { base = buf = pend = ''; put(); } return; }
+      if (v.indexOf(base) === 0) {
+        var typed = v.slice(base.length).replace(/[\s　]/g, '');
+        if (TYPING.test(typed)) pend = typed; else commit();
+      } else if (TYPING.test(v.replace(/[\s　]/g, ''))) {
+        buf = ''; pend = v.replace(/[\s　]/g, ''); base = '';
+      } else {
+        pend = ''; base = v;
+      }
+      put();
+    });
+    kn.addEventListener('input', function () { manual = kn.value !== ''; });
+  }
+  autoKana('input[name=sei]', 'input[name=seiKana]');
+  autoKana('input[name=mei]', 'input[name=meiKana]');
   var toTel = function (s) { return String(s || '').replace(/[０-９]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0xFEE0); }).replace(/[^\d]/g, '').replace(/^(?:00)?810?(?=[1-9]\d{8,9}$)/, '0'); };
   // iPhoneの候補から選ぶと「+81 80…」の形で入るので、欄を離れたときに「080…」へ直して見せる
-  ['blur', 'change', 'input'].forEach(function (ev) {
-    $('input[name=tel]').addEventListener(ev, function () {
-      if (ev === 'input' && !/^\s*(\+|00)81/.test(this.value)) return; // 打っている途中は触らない（+81 で入ったときだけ）
-      var t = toTel(this.value); if (/^0\d{9,10}$/.test(t) && t !== this.value) this.value = t;
-    });
-  });
+  $('input[name=tel]').addEventListener('blur', function () { var t = toTel(this.value); if (/^0\d{9,10}$/.test(t)) this.value = t; });
   $('#form').addEventListener('submit', function (e) {
     e.preventDefault();
     var f = e.target, v = function (n) { return (f.elements[n].value || '').trim(); };
-    var full = v('name').replace(/[\s　]+/g, ' ').trim(), parts = full.split(' ');
-    var data = { sei: parts[0] || '', mei: parts.slice(1).join(' '), seiKana: '', meiKana: '', tel: toTel(v('tel')), email: v('email'), note: v('note'), website: v('website') };
-    var empty = { name: !full, tel: !v('tel'), email: !v('email') };
+    var data = { sei: v('sei'), mei: v('mei'), seiKana: toKata(v('seiKana')), meiKana: toKata(v('meiKana')), tel: toTel(v('tel')), email: v('email'), note: v('note'), website: v('website') };
     var bad = {
-      name: !full,
+      name: !data.sei || !data.mei,
+      kana: !KATA.test(data.seiKana) || !KATA.test(data.meiKana),
       tel: !/^0\d{9,10}$/.test(data.tel),
       email: !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)
     };
     var any = false;
     Object.keys(bad).forEach(function (k) { f.querySelector('[data-k=' + k + ']').classList.toggle('bad', bad[k]); any = any || bad[k]; });
     var al = $('#alert3');
-    Object.keys(bad).forEach(function (k) { if (bad[k]) funnel('x_err_' + k + (empty[k] ? '_empty' : '')); });
+    Object.keys(bad).forEach(function (k) { if (bad[k]) funnel('x_err_' + k); });
+    if (!any && !f.elements.agree.checked) { funnel('x_err_agree'); al.textContent = 'プライバシーポリシーへの同意が必要です'; al.classList.add('show'); return; }
     al.classList.remove('show');
-    if (any) { var bads = f.querySelectorAll('.bad input'), first = null; for (var i = 0; i < bads.length && !first; i++) if (!bads[i].value || bads[i].closest('.f').dataset.k !== 'name') first = bads[i]; (first || bads[0]).focus(); try { (first || bads[0]).scrollIntoView({ block: 'center' }); } catch (e) {} return; }
+    if (any) { var bads = f.querySelectorAll('.bad input'), first = null; for (var i = 0; i < bads.length && !first; i++) if (!bads[i].value || bads[i].closest('.f').dataset.k !== 'name') first = bads[i]; (first || bads[0]).focus(); return; }
+    f.elements.seiKana.value = data.seiKana; f.elements.meiKana.value = data.meiKana;
     st.form = data;
     go(4);
   });
@@ -524,10 +535,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     sending = true;
     funnel('s5_submit');
     var b = this, al = $('#alert4');
-    b.disabled = true;
-    var t0 = Date.now(), note = $('#waitNote'), waitMsg = function () { b.innerHTML = '<span class="spin" style="border-top-color:#fff"></span>予約しています…（' + Math.floor((Date.now() - t0) / 1000) + '秒）'; };
-    note.hidden = false;
-    waitMsg(); var waitTick = setInterval(waitMsg, 1000);
+    b.disabled = true; b.innerHTML = '<span class="spin" style="border-top-color:#fff"></span>空きを確認して予約しています…';
     al.classList.remove('show'); $('#fb4').classList.remove('show');
     var body = Object.assign({ action: 'reserve', couponId: st.coupon.id, date: st.date, time: st.time, src: SRC }, st.form);
     var ctl = new AbortController();
@@ -539,8 +547,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
         if (d.ok) {
           funnel('s6_done');
           try { sessionStorage.setItem('mc_rsv', JSON.stringify({ id: d.id, date: st.date, time: st.time, coupon: st.coupon.n, price: st.coupon.p, dur: st.coupon.m, f: { sei: st.form.sei, mei: st.form.mei, seiKana: st.form.seiKana, meiKana: st.form.meiKana, tel: st.form.tel, email: st.form.email, note: st.form.note } })); } catch (e) {}
-          clearInterval(waitTick);
-          location.replace('thanks.html#' + encodeURIComponent(d.id));
+          location.href = 'thanks.html#' + encodeURIComponent(d.id);
           return;
         }
         if (d.reason === 'taken') {
@@ -562,13 +569,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
         al.innerHTML = '通信が途中で切れました。もう一度「予約を確定する」を押してください（同じ内容で二重に予約されることはありません）。何度か失敗する場合はお電話（<a href="tel:0368227689">03-6822-7689</a>）でご予約ください。';
         al.classList.add('show');
       })
-      .then(function () { clearInterval(waitTick); note.hidden = true; sending = false; b.disabled = false; b.textContent = '予約を確定する'; });
+      .then(function () { sending = false; b.disabled = false; b.textContent = '予約を確定する'; });
   });
 
   /* ── 初期表示（LPから ?coupon=CP… で来たら日時から） ── */
   renderCards();
   var q = new URLSearchParams(location.search).get('coupon');
-  if (q && COUPONS.some(function (c) { return c.id === q; })) pick(q, 'replace'); else go(1, 'replace'); // 最初の画面は履歴を増やさない（LPから来た人が「戻る」でLPに戻れるように）
+  if (q && COUPONS.some(function (c) { return c.id === q; })) pick(q); else go(1);
 })();
 </script>
 </body>
