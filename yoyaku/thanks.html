@@ -128,8 +128,8 @@ body{font-family:var(--sans);color:var(--ink);background:#e9eef6;line-height:1.7
   ];
   var f = r.f || {};
   var rows2 = [];
-  if (f.sei) rows2.push(['お名前', esc(f.sei + ' ' + f.mei) + ' 様']);
-  if (f.seiKana) rows2.push(['フリガナ', esc(f.seiKana + ' ' + f.meiKana)]);
+  if (f.sei) rows2.push(['お名前', esc((f.sei + ' ' + (f.mei || '')).trim()) + ' 様']);
+  if (f.seiKana) rows2.push(['フリガナ', esc((f.seiKana + ' ' + (f.meiKana || '')).trim())]);
   if (f.tel) rows2.push(['電話番号', esc(f.tel)]);
   if (f.email) rows2.push(['メール', esc(f.email)]);
   if (f.note) rows2.push(['ご要望', esc(f.note)]);
