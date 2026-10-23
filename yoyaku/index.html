@@ -45,7 +45,18 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .page{max-width:480px;margin:0 auto;background:var(--white);min-height:100vh;padding-bottom:40px}
 
 /* header */
-.hd{display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 16px;border-bottom:1px solid #eef1f6;background:#fff;position:sticky;top:0;z-index:20}
+.hdw{position:sticky;top:0;z-index:20}
+.hd{display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 96px 9px 12px;border-bottom:1px solid #eef1f6;background:#fff;position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.hd-more{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--navy-l);border:1px solid var(--line);border-radius:999px;padding:2px 9px;background:#fff;white-space:nowrap}
+.hd-more i{font-style:normal;display:inline-block;margin-left:3px;transition:transform .2s}
+.hd[aria-expanded="true"] .hd-more i{transform:rotate(180deg)}
+.hd-info{background:#fff;border-bottom:1px solid var(--line);box-shadow:0 6px 14px rgba(20,35,79,.08);padding:12px 18px 14px;max-height:65vh;overflow:auto;font-size:13px}
+.hd-info dl{display:grid;grid-template-columns:5.2em 1fr;gap:7px 10px;margin:0}
+.hd-info dt{color:var(--gray);font-size:12px}
+.hd-info dd{margin:0;color:var(--ink)}
+.hd-info .gtee{margin-top:10px;background:var(--gold-bg);border-radius:8px;padding:9px 11px;font-size:12px;line-height:1.6}
+.hd-info .gtee b{display:block;color:var(--navy);font-size:12.5px;margin-bottom:2px}
+.hd-info .hd-close{display:block;margin:10px auto 0;background:none;border:0;color:var(--gray);font-size:12px;text-decoration:underline;cursor:pointer}
 .hd img{width:24px}
 .hd b{font-family:var(--serif);font-weight:500;color:var(--navy);font-size:16px;letter-spacing:.06em}
 .hd small{font-size:10px;color:var(--gray);border-left:1px solid var(--line);padding-left:8px}
@@ -160,7 +171,21 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 <body>
 <script>if(window.MC_PREVIEW)document.write('<div style="position:sticky;top:0;z-index:99;background:#b3261e;color:#fff;font-size:12px;text-align:center;padding:6px 8px">確認用の表示です。最後の「予約を確定する」を押すと本当に予約が入ります</div>')</script>
 <div class="page">
-  <header class="hd"><img src="../img/logo_mark.png" alt="" width="24" height="21"><b>MAYU CLEAR</b><small>表参道/原宿店</small></header>
+  <div class="hdw">
+  <header class="hd" id="hd" role="button" tabindex="0" aria-expanded="false" aria-controls="hdInfo"><img src="../img/logo_mark.png" alt="" width="24" height="21"><b>MAYU CLEAR</b><small>表参道/原宿店</small><span class="hd-more">店舗情報<i aria-hidden="true">▾</i></span></header>
+  <!-- ヘッダーを押すとその場で開く店舗情報（2026/10/23 案A：ヘッダーのデッドクリックの後の離脱対策。ページは移動しない） -->
+  <div class="hd-info" id="hdInfo" hidden>
+    <dl>
+      <dt>店舗</dt><dd>マユクリア 表参道/原宿店</dd>
+      <dt>住所</dt><dd>東京都渋谷区神宮前４丁目２６－３２原宿吉田ビル３０２</dd>
+      <dt>アクセス</dt><dd>原宿駅・表参道駅 徒歩5分</dd>
+      <dt>営業時間</dt><dd>平日 11:00〜20:00<br>土日祝 10:00〜19:00</dd>
+      <dt id="hdMenuT" hidden>メニュー</dt><dd id="hdMenu" hidden></dd>
+    </dl>
+    <p class="gtee"><b>全額返金保証</b>仕上がりにご満足いただけなかった場合は、施術後7日以内にお申し出いただければ、理由を問わず全額返金いたします。</p>
+    <button type="button" class="hd-close" id="hdClose">閉じる</button>
+  </div>
+  </div>
 
   <ol class="steps" id="steps">
     <li data-s="1">メニュー</li><li data-s="2">日時</li><li data-s="3">お客様情報</li><li data-s="4">確認</li>
@@ -520,6 +545,24 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     try { navigator.sendBeacon(API + '/ev', JSON.stringify({ sid: SID, step: step, src: SRC })); } catch (e) {}
   }
   document.addEventListener('click', function (e) { var a = e.target.closest('a[href*="hotpepper"]'); if (a) funnel(a.dataset.hpb === 'repeat' ? 'x_hpb_repeat' : 'x_hpb_go'); });
+
+  /* ── ヘッダーの店舗情報（押すとその場で開閉。選んだ日時や入力中の内容はそのまま） ── */
+  (function () {
+    var hd = $('#hd'), box = $('#hdInfo');
+    function set(open) {
+      if (open) {
+        var c = st.coupon;
+        $('#hdMenuT').hidden = $('#hdMenu').hidden = !c;
+        if (c) $('#hdMenu').innerHTML = esc(c.n) + '<br>' + (c.p > 0 ? yen(c.p) + '（税込）' : '来店時にご相談') + '　所要 約' + c.m + '分';
+        funnel('x_hd_info'); // 開いた人の数（1回目だけ数える）
+      }
+      box.hidden = !open;
+      hd.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    hd.addEventListener('click', function () { set(box.hidden); });
+    hd.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); set(box.hidden); } });
+    $('#hdClose').addEventListener('click', function () { set(false); });
+  })();
   var sending = false;
   $('#confirm').addEventListener('click', function () {
     if (sending) return;
